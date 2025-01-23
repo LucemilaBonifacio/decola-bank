@@ -1,0 +1,40 @@
+.card-title-main{
+  text-align: center;
+  font-size: 40px;
+  color: #FB8207;
+  margin-bottom: 30px; 
+}
+img{
+    width: 61px;
+    height: 69px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column; /* Para alinhar o conteúdo verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: center; /* Centraliza verticalmente */
+    height: 300px !important;
+    border-radius: 15px; /* Ajuste o valor conforme necessário */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Adiciona transição */
+
+
+}
+.card:hover{
+    transform: scale(1.05); /* Aumenta o tamanho do card */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumenta a sombra */
+    border: 2px solid #FB8207; /* Muda a cor da borda */
+}
+
+
+  
+  .card img {
+    margin-bottom: 10px; /* Espaço abaixo da imagem, se necessário */
+    margin-top: 80px; /* Espaço abaixo da imagem, se necessário */
+    
+  }
+
+  .card-title{
+    text-align: center;
+  }
