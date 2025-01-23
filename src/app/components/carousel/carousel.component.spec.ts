@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CarouselComponent } from './carousel.component';
+import { NgOptimizedImage } from '@angular/common';
 
 describe('CarouselComponent', () => {
   let component: CarouselComponent;
