@@ -1,10 +1,13 @@
+import { CarouselComponent } from "./components/carousel/carousel.component";
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CarouselComponent } from "./components/carousel/carousel.component";
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { CardSecurityComponent } from "./components/card-security/card-security.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CarouselComponent],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, CardSecurityComponent, CarouselComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
