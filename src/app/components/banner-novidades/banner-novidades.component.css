@@ -1,4 +1,12 @@
-/* Remove bordas dos cards */
+.card-title-main-app{
+    text-align: left;
+    font-size: 40px;
+    color: #FB8207;
+    margin-top: 80px;
+  
+  }
+  
+
 .card.no-border {
     border: none;
     box-shadow: none;
@@ -14,6 +22,4 @@
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); 
     z-index: 1; /* Traz o card para frente */
     position: relative; /* Garante que o z-index funcione */
-   
-    
 }   

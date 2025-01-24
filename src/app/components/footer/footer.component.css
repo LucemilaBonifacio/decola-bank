@@ -1,10 +1,11 @@
 .footer {
     background-color: #FB8207; /* Mesma cor da navbar */
     padding: 10px 0;
-    position: fixed; /* Fixar no final */
+    /* position: fixed;  */
     bottom: 0; /* Posicionar no fim */
     width: 100%; /* Largura total da tela */
     z-index: 1000; /* Garantir que fique acima de outros elementos */
+    margin-top: 100px;
   }
   
   .footer .container {

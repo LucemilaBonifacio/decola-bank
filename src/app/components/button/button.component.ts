@@ -1,9 +1,8 @@
-import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-button',
-  imports: [NgOptimizedImage],
+  imports: [],
   templateUrl: './button.component.html',
   styleUrl: './button.component.css'
 })
