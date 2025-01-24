@@ -1,0 +1,10 @@
+.carousel-caption.d-none.d-md-block {
+    font-size: 2em; 
+    text-align:center; 
+    left: 0; 
+    right: auto; 
+    padding-left: 50px; 
+    top: 200px;
+    font-weight:600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);;
+}
