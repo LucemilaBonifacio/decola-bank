@@ -5,10 +5,11 @@ import { CardsInitComponent } from "./components/cards-init/cards-init.component
 import { BannerNovidadesComponent } from "./components/banner-novidades/banner-novidades.component";
 import { CarouselComponent } from "./components/carousel/carousel.component";
 import { ButtonComponent } from './components/button/button.component';
+import { CardAppHomeComponent } from "./components/card-app-home/card-app-home.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavbarComponent, FooterComponent, CardSecurityComponent, CarouselComponent, BannerNovidadesComponent, ButtonComponent],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, CardSecurityComponent, CarouselComponent, BannerNovidadesComponent, ButtonComponent, CardAppHomeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
