@@ -1,0 +1,23 @@
+.titulo-inicial {
+    color: #FB8207; 
+    margin-left: 70px;
+}
+
+.container {
+    max-width: 100%; 
+    height: auto
+}
+
+#texto{
+    color: #fff;
+    margin-top: 200px;
+    margin-left: 130px;
+}
+#app{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 400px;
+    margin-left: 350px;
+    margin-right: 200px;
+}
