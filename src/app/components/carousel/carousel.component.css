@@ -1,0 +1,16 @@
+.carousel {
+    margin-top: 50px;
+}
+
+.carousel-caption.d-none.d-md-block {
+    text-align: left; 
+    left: 0; 
+    padding: 80px; 
+    margin-top: 180px;
+}
+
+.titulo{
+    font-size: 4rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: 650;
+}
