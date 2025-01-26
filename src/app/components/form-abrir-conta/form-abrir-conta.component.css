@@ -1,0 +1,38 @@
+.container {
+    max-width: 600px; /* Ajuste este valor conforme necessário */
+    margin: 0 auto; /* Centraliza o contêiner na página */
+  }
+
+.input-custom {
+    border: 2px solid #fc8207; /* Cor tema do site */
+    border-radius: 5px;
+    padding: 0.5rem;
+    transition: border-color 0.3s ease;
+}
+
+.input-custom:focus {
+    border-color: #e57305; /* Cor tema do site ao focar */
+    outline: none;
+}
+
+.action-button {
+    background-color: #fc8207;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.action-button:hover   {
+    background-color: #fc8207; 
+}
+
+.modal-title, .modal-body p {
+    font-weight: normal; 
+}
+
+.politica-privacidade{
+    color: #fc8207;
+    text-decoration: none;
+}
