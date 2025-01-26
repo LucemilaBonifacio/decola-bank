@@ -1,6 +1,7 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 
+
 @Component({
   selector: 'app-card-app-home',
   imports: [NgOptimizedImage],

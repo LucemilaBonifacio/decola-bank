@@ -11,7 +11,7 @@
   
   .navbar .dropdown:hover .dropdown-menu {
     display: block;
-  }
+  } 
   
   /* Flexbox para manter os itens lado a lado */
   .custom-navbar .container {
