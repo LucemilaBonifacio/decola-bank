@@ -1,0 +1,30 @@
+.card-login-container{
+
+justify-items: center;
+align-items: center;
+height: 852;
+}
+
+.card-login{
+    width: 318;
+    height: 652;
+    box-shadow: 10px 10px 5px #888888;
+    justify-items: center;
+    align-items: center;
+    
+}
+.value{
+    width: 150;
+    height: 30;
+}
+
+.input{
+    background-color: #E7E7E7;
+    padding: 10px;
+    border-radius: 10px;
+}
+.card-login-texto{
+    font-size: 3px;
+    text-align: center;
+    color: #000;
+}

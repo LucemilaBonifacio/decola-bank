@@ -1,16 +1,109 @@
-.carousel {
-    margin-top: 50px;
+/* .carousel{
+    background-image: url('/public/assets/transicao.png');
+    background-size: cover; 
+    background-position: center; 
+    height: 300px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+} */
+.carousel-inner{
+    display: flex;
+    justify-content: space-between;
+    gap: 300px;
+    padding: 0 80px;
 }
-
-.carousel-caption.d-none.d-md-block {
+.carousel{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 100px;
+}
+.imagem-carousel{
+    width: 600px;
+    height: 450px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+.carousel-control-prev, .carousel-control-next{
+    color: #000;
+}
+.carousel-texto {
     text-align: left; 
     left: 0; 
     padding: 80px; 
-    margin-top: 180px;
+    color: black;
 }
 
-.titulo{
-    font-size: 4rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    font-weight: 650;
+/* Responsividade */
+@media (max-width: 1200px) {
+    .carousel-inner {
+        gap: 200px;
+        padding: 0 60px;
+    }
+    .carousel {
+        gap: 80px;
+    }
+    .imagem-carousel {
+        width: 500px;
+        height: 375px;
+    }
+    .carousel-texto {
+        padding: 60px;
+    }
 }
+
+@media (max-width: 992px) {
+    .carousel-inner {
+        gap: 150px;
+        padding: 0 40px;
+    }
+    .carousel {
+        gap: 60px;
+    }
+    .imagem-carousel {
+        width: 400px;
+        height: 300px;
+    }
+    .carousel-texto {
+        padding: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-inner {
+        flex-direction: column;
+        gap: 50px;
+        padding: 0 20px;
+    }
+    .carousel {
+        flex-direction: column;
+        gap: 50px;
+    }
+    .imagem-carousel {
+        width: 100%;
+        height: auto;
+    }
+    .carousel-texto {
+        padding: 20px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-inner {
+        gap: 30px;
+        padding: 0 10px;
+    }
+    .carousel {
+        gap: 30px;
+    }
+    .carousel-texto {
+        padding: 10px;
+    }
+}
+

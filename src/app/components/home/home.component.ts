@@ -3,12 +3,12 @@ import { FooterComponent } from "../footer/footer.component";
 import { CardAppHomeComponent } from "../card-app-home/card-app-home.component";
 import { CardSecurityComponent } from "../card-security/card-security.component";
 import { CarouselComponent } from "../carousel/carousel.component";
-import { NavbarComponent } from "../navbar/navbar.component";
 import { CardsInitComponent } from "../cards-init/cards-init.component";
+
 
 @Component({
   selector: 'app-home',
-  imports: [FooterComponent, CardAppHomeComponent, CardSecurityComponent, CarouselComponent, NavbarComponent, CardsInitComponent],
+  imports: [FooterComponent, CardAppHomeComponent, CardSecurityComponent, CarouselComponent, CardsInitComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
