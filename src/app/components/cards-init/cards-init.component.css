@@ -1,82 +1,87 @@
-.card-title-main-app {
-  text-align: left;
+
+/* Estilo para o título principal do app */
+.card-title-main-app{
   font-size: 40px;
   color: #FB8207;
-  margin-bottom: 40px; 
   margin-top: 50px;
+  margin-bottom: 50px;
+  animation: titleAnimation 1s ease-out;
 }
 
-img {
-  width: 100px;
-  height: 90px;
+/* Animação do título */
+@keyframes titleAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
+/* Estilos do card */
 .card {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 300px !important;
+  align-items: flex-start; /* Alinha itens à esquerda */
+  justify-content: flex-start; /* Alinha itens ao topo */
+  height: 230px !important;
   border-radius: 15px;
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 20px; /* Adiciona um espaçamento interno */
+ 
 }
 
+/* Efeito de hover no card */
 .card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  border: 2px solid #FB8207;
+  transform: translateY(-5px); /* Eleva o card */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Sombra mais forte */
+  border: 1.5px solid #FB8207; /* Borda laranja */
 }
 
+/* Estilo da imagem no card */
 .card img {
-  margin-bottom: 10px;
-  margin-top: 80px;
+  margin: 0; /* Remove margens adicionais */
+  margin-bottom: 10px; /* Adiciona espaço abaixo da imagem */
+  width: 50px;
+  height: 50px;
 }
 
+/* Título do card */
 .card-title {
-  text-align: center;
+  text-align: left; /* Alinha o texto à esquerda */
 }
 
-/* Tela média (até 768px) */
-@media (max-width: 768px) {
-  .card-title-main-app {
-    font-size: 32px;
-    margin-bottom: 30px;
-    margin-top: 40px;
-  }
+/* Texto do card */
+.card-text {
+  color: rgb(152, 150, 150);
+  font-weight: 500;
+}
 
+/* @media (max-width: 768px) {
   .card {
     height: 250px !important;
+    align-items: flex-start;
+    justify-content: flex-start;
   }
 
   img {
-    width: 80px;
-    height: 70px;
-  }
-
-  .row-cols-md-5 {
-    grid-template-columns: repeat(3, 1fr); /* Reduz para 3 colunas */
+    width: 40px;
+    height: 40px;
   }
 }
 
-/* Tela menor (até 480px) */
 @media (max-width: 480px) {
-  .card-title-main-app {
-    font-size: 24px;
-    margin-bottom: 20px;
-    margin-top: 30px;
-  }
-
   .card {
     height: 220px !important;
+    align-items: flex-start;
+    justify-content: flex-start;
   }
 
   img {
-    width: 60px;
-    height: 60px;
+    width: 35px;
+    height: 35px;
   }
-
-  .row-cols-md-5 {
-    grid-template-columns: repeat(2, 1fr); /* Reduz para 2 colunas */
-  }
-}
+} */

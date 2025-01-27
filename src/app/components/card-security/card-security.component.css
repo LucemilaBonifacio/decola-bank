@@ -27,6 +27,49 @@
     font-size: 0.95rem;
     margin-bottom: 15px;
 }
+/* Alinha a imagem à esquerda e o texto à direita dentro do modal */
+.modal-body .d-flex {
+    justify-content: space-between; /* Garante que a imagem e o texto fiquem nas extremidades */
+    align-items: center; /* Alinha verticalmente no centro */
+  }
+  
+  .security-image {
+    width:500px; /* Ajuste o tamanho da imagem conforme necessário */
+    height: 550px;
+    max-width: 100%;
+    border-radius: 16px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+
+  }
+
+  .text-column {
+    background-color: #e3dbdb;
+    border-radius: 10px;
+    padding: 1.5rem; /* Ajusta o espaçamento interno */
+   
+  }
+  
+  .modal-body h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    text-align: left;
+    color:#FB8207;
+  }
+  
+  .modal-body p, h5 {
+    margin-bottom: 5px;
+    font-weight: normal;
+    text-align: left;
+  }
+  .modal-body h4{
+   font-size: 20px;
+   color: #FB8207;
+  }
+  
+  .ms-3 {
+    margin-left: 15px; /* Espaçamento entre a imagem e o texto */
+  }
+  
 
 @media (max-width: 768px) {
     .dicas-seguranca {
@@ -42,6 +85,9 @@
     .dicas-seguranca btn{
         font-size: 0.85rem;
     }
+    /* .modal-body{
+
+    } */
 }
 
 @media (max-width: 480px) {
@@ -58,5 +104,11 @@
     .dicas-seguranca btn{
         font-size: 0.8rem;
         padding: 8px 15px;
+    } 
+    .security-image {
+        max-width: 80%; /* Ajusta o tamanho da imagem em telas muito pequenas */
+        margin: 0 auto; /* Centraliza a imagem */
     }
+      
+      
 }

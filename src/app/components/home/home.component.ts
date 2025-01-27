@@ -9,7 +9,7 @@ import { BannerNovidadesComponent } from "../banner-novidades/banner-novidades.c
 
 @Component({
   selector: 'app-home',
-  imports: [FooterComponent, CarouselComponent, CardsInitComponent],
+  imports: [FooterComponent, CardAppHomeComponent, CardSecurityComponent, CarouselComponent, CardsInitComponent, BannerNovidadesComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
