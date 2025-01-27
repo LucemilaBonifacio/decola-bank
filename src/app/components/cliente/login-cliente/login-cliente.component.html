@@ -1,23 +1,46 @@
-
 <section class="card-login-container">
     <div class="card-login">
-        <div class="card-login-texto">
-            <h1>Acessar sua conta</h1>
+        <div class="card-login-titulo">
+            <h1 class="login-titulo">Acessar sua conta</h1>
         </div>
         
-        <div class="value">
-            <textarea class="input" placeholder="Agência"></textarea>
-           
-        </div>
-        <div class="value">
-            <textarea class="input" placeholder="Conta"></textarea>
-           
-        </div>
-        <div class="value">
-            <input type="password" class="input" placeholder="Senha">
-            
-        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="value0">
+                <input type="number" class="input0" placeholder="Agência" formControlName="agencia" maxlength="4" (input)="validateLength($event, 4)">
+                <div ngIf="loginForm.get('agencia').invalid && loginForm.get('agencia').touched">
+                    <small ngIf="loginForm.get('agencia').errors.required"></small>
+                    <small ngIf="loginForm.get('agencia').errors.minlength"></small>
+                    <small ngIf="loginForm.get('agencia').errors.maxlength"></small>
+                </div>
+            </div>
+            <div class="value1">
+                <input type="number" class="input1" placeholder="Conta" formControlName="numConta" maxlength="7" (input)="validateLength($event, 7)">
+                <div ngIf="loginForm.get('numConta').invalid && loginForm.get('numConta').touched">
+                    <small ngIf="loginForm.get('numConta').errors.required"></small>
+                    <small ngIf="loginForm.get('numConta').errors.minlength"></small>
+                    <small ngIf="loginForm.get('numConta').errors.maxlength"></small>
+                </div>
+            </div>
+            <div class="value2">
+                <input type="password" class="input2" placeholder="Senha" formControlName="senha">
+                <div ngIf="loginForm.get('senha').invalid && loginForm.get('senha').touched">
+                    <small ngIf="loginForm.get('senha').errors.required"></small>
+                </div>
+            </div>
+            <div class="check">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
+                    <label class="form-check-label" for="flexCheckIndeterminate">
+                        Lembrar
+                    </label>
+                </div>
+                <div>
+                    <p>Esqueceu a senha?</p>
+                </div>
+            </div>
+            <div>
+                <button id="btn-02" type="submit">Login</button>
+            </div>
+        </form>
     </div>
-    
-
 </section>
