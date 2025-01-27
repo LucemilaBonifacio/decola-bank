@@ -4,7 +4,7 @@
     /* position: fixed;  */
     bottom: 0; /* Posicionar no fim */
     width: 100%; /* Largura total da tela */
-    z-index: 1000; /* Garantir que fique acima de outros elementos */
+    /* z-index: 1000; Garantir que fique acima de outros elementos */
     margin-top: 100px;
   }
   
@@ -12,7 +12,6 @@
     display: flex;
     justify-content: space-between; /* Itens alinhados horizontalmente */
     align-items: center;
-    max-width: 1200px; /* Tamanho máximo */
     margin: 0 auto; /* Centralizar horizontalmente */
     text-align: center; /* Centralizar textos */
   }
@@ -70,7 +69,7 @@
     }
   
     .footer img {
-      width: 35px; /* Reduz o tamanho do logo */
+      width: 30px; /* Reduz o tamanho do logo */
       height: 25px;
     }
   }
