@@ -35,7 +35,7 @@ export class FormAbrirContaComponent {
   }
 
   fecharFormulario() {
-    this.router.navigate(['/tela-anterior']);
+    this.router.navigate(['/home']);
   }
 
   onSubmit() {
