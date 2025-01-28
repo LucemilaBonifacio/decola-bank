@@ -1,6 +1,6 @@
 /* Estilos básicos da navbar */
 .custom-navbar {
-  background-color: #FB8207;
+  background-color: #ff7900; 
 }
   
 .navbar .navbar-brand,
@@ -8,7 +8,7 @@
 .navbar .dropdown-menu {
   color: #FFFFFF;
 }
-  
+
 .navbar .dropdown:hover .dropdown-menu {
   display: block;
 } 

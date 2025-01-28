@@ -14,19 +14,19 @@
 }
 
 .input-custom {
-    border: 2px solid #fc8207; /* Cor tema do site */
+    border: 2px solid #ff7900; /* Cor tema do site */
     border-radius: 5px;
     padding: 0.5rem;
     transition: border-color 0.3s ease;
 }
 
 .input-custom:focus {
-    border-color: #e57305; /* Cor tema do site ao focar */
+    border-color: #ff7900; /* Cor tema do site ao focar */
     outline: none;
 }
 
 .action-button {
-    background-color: #fc8207;
+    background-color: #ff7900;
     color: white;
     border: none;
     padding: 0.5rem 1rem;
@@ -43,6 +43,6 @@
 }
 
 .politica-privacidade{
-    color: #fc8207;
+    color: #ff7900;
     text-decoration: none;
 }
