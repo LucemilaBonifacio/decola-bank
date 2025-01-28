@@ -1,0 +1,244 @@
+<section class="container">
+
+  <!-- <h2 *ngIf="isLoggedIn">Olá, {{nome}}</h1> -->
+  <div class="saldação">
+    <h2>Olá, Lucemila Bonifácio</h2>
+  </div>
+  <div class="saldo">
+    <!-- <div *ngIf="saldoCliente">Saldo: {{saldoCliente}}</div> -->
+    <h3>Saldo: R$ 1.000</h3>
+  </div>
+
+
+
+  <div class="row row-cols-1 row-cols-md-5 g-4">
+    <div class="col">
+      <!-- Card1-->
+      <div class="card h-100" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        data-bs-whatever="Saque">
+        <img ngSrc="assets/saque.png" [width]="194" [height]="100" class="card-img-top" alt="fatura">
+        <i class="bi bi-cash-coin"></i>
+        <div class="card-body">
+          <h5 class="card-title">Saque</h5>
+          <p class="card-text">Seu dinheiro disponível a qualquer hora</p>
+        </div>
+      </div>
+    </div>
+  
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Detalhes do Serviço</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Serviço Selecionado:</label>
+              <input type="text" class="form-control" id="recipient-name" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Descrição:</label>
+              <textarea class="form-control" id="message-text" readonly>
+
+      Seu dinheiro disponível a qualquer hora, com facilidade e segurança. Verifique os limites e condições no seu contrato.
+      </textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-primary">Confirmar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <!-- Card2-->
+    <div class="card h-100" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#exampleModal"
+      data-bs-whatever="Pagamento">
+      <img ngSrc="assets/boleto.png" [width]="194" [height]="100" class="card-img-top" alt="fatura">
+      <i class="bi bi-cash-coin"></i>
+      <div class="card-body">
+        <h5 class="card-title">Pagamento</h5>
+        <p class="card-text">Simples rápido e seguro</p>
+      </div>
+    </div>
+  </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Detalhes do Serviço</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Serviço Selecionado:</label>
+            <input type="text" class="form-control" id="recipient-name" readonly>
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Descrição:</label>
+            <textarea class="form-control" id="message-text" readonly>
+
+    Seu dinheiro disponível a qualquer hora, com facilidade e segurança. Verifique os limites e condições no seu contrato.
+    </textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col">
+  <!-- Card3-->
+  <div class="card h-100" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#exampleModal"
+    data-bs-whatever="Extrato">
+    <img ngSrc="assets/extrato.png" [width]="194" [height]="100" class="card-img-top" alt="fatura">
+    <i class="bi bi-cash-coin"></i>
+    <div class="card-body">
+      <h5 class="card-title">Extrato</h5>
+      <p class="card-text">Sua movimentação financeira em um só lugar</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="exampleModalLabel">Detalhes do Serviço</h1>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="mb-3">
+          <label for="recipient-name" class="col-form-label">Serviço Selecionado:</label>
+          <input type="text" class="form-control" id="recipient-name" readonly>
+        </div>
+        <div class="mb-3">
+          <label for="message-text" class="col-form-label">Descrição:</label>
+          <textarea class="form-control" id="message-text" readonly>
+
+  Seu dinheiro disponível a qualquer hora, com facilidade e segurança. Verifique os limites e condições no seu contrato.
+  </textarea>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      <button type="button" class="btn btn-primary">Confirmar</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="col">
+  <!-- Card4-->
+  <div class="card h-100" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#exampleModal"
+    data-bs-whatever="Deposito">
+    <img ngSrc="assets/saque.png" [width]="194" [height]="100" class="card-img-top" alt="fatura">
+    <i class="bi bi-cash-coin"></i>
+    <div class="card-body">
+      <h5 class="card-title">Depósito</h5>
+      <p class="card-text">Conforto e praticidade com um clique</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="exampleModalLabel">Detalhes do Serviço</h1>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="mb-3">
+          <label for="recipient-name" class="col-form-label">Serviço Selecionado:</label>
+          <input type="text" class="form-control" id="recipient-name" readonly>
+        </div>
+        <div class="mb-3">
+          <label for="message-text" class="col-form-label">Descrição:</label>
+          <textarea class="form-control" id="message-text" readonly>
+
+  Seu dinheiro disponível a qualquer hora, com facilidade e segurança. Verifique os limites e condições no seu contrato.
+  </textarea>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      <button type="button" class="btn btn-primary">Confirmar</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="col">
+  <!-- Card5-->
+  <div class="card h-100" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#exampleModal"
+    data-bs-whatever="Transferencia">
+    <img ngSrc="assets/saque.png" [width]="194" [height]="100" class="card-img-top" alt="fatura">
+    <i class="bi bi-cash-coin"></i>
+    <div class="card-body">
+      <h5 class="card-title">Transferência</h5>
+      <p class="card-text">Controle total sobre suas remessas financeiras</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="exampleModalLabel">Detalhes do Serviço</h1>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="mb-3">
+          <label for="recipient-name" class="col-form-label">Serviço Selecionado:</label>
+          <input type="text" class="form-control" id="recipient-name" readonly>
+        </div>
+        <div class="mb-3">
+          <label for="message-text" class="col-form-label">Descrição:</label>
+          <textarea class="form-control" id="message-text" readonly>
+
+  Seu dinheiro disponível a qualquer hora, com facilidade e segurança. Verifique os limites e condições no seu contrato.
+  </textarea>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      <button type="button" class="btn btn-primary">Confirmar</button>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+
+
+</section>
