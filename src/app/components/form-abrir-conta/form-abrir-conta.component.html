@@ -76,7 +76,7 @@
           type="checkbox" 
           class="form-check-input" 
           formControlName="politica">
-        <label for="politica" class="form-check-label">
+        <label for="politica" class="form-check-label ">
           Eu li, estou ciente das condições de tratamento dos meus dados pessoais e dou meu consentimento, quando aplicável, conforme descrito nesta <a class="politica-privacidade">Política de Privacidade</a>
         </label>
         <div *ngIf="form.get('politica')?.touched && form.get('politica')?.errors">
@@ -108,4 +108,3 @@
   </div>
 </div>
 
-<app-footer></app-footer>

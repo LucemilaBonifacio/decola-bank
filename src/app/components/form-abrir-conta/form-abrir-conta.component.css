@@ -1,7 +1,17 @@
 .container {
     max-width: 600px; /* Ajuste este valor conforme necessário */
-    margin: 0 auto; /* Centraliza o contêiner na página */
-  }
+    margin-bottom: 50px;
+    
+}
+
+.form-label {
+    color: rgb(108, 117, 126);
+    font-weight: 500;
+}
+
+.form-check-label {
+    font-weight: 500;
+}
 
 .input-custom {
     border: 2px solid #fc8207; /* Cor tema do site */
