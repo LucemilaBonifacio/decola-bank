@@ -5,11 +5,15 @@ import { FormAbrirContaComponent } from './components/form-abrir-conta/form-abri
 import { TelaInicialClienteComponent } from './components/cliente/tela-inicial-cliente/tela-inicial-cliente.component';
 
 
+
+
 export const routes: Routes = [
 {path:"", redirectTo:"home", pathMatch:"full"},
 {path: 'home', component: HomeComponent},
 {path: 'abra-sua-conta', component: FormAbrirContaComponent},
 {path: 'login/cliente', component: LoginClienteComponent},
 {path: 'tela-inicial-cliente', component: TelaInicialClienteComponent}
+
+
 
 ];
