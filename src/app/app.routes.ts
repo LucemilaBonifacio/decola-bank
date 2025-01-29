@@ -9,6 +9,7 @@ import { DepositoComponent } from './components/cliente/tela-inicial-cliente/dep
 
 
 
+
 export const routes: Routes = [
 {path:"", redirectTo:"home", pathMatch:"full"},
 {path: 'home', component: HomeComponent},
@@ -17,6 +18,7 @@ export const routes: Routes = [
 {path: 'tela-inicial-cliente', component: TelaInicialClienteComponent},
 {path: 'login/gerente', component: LoginGerenteComponent},
 {path: 'deposito',component: DepositoComponent}
+
 
 
 

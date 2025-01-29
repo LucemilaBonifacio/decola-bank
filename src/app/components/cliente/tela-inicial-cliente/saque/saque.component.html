@@ -1,1 +1,17 @@
-<p>saque works!</p>
+<section class="card-saque-container">
+    <article class="card-saque">
+      <header class="title">
+        <h1 class="saque-title">Saque</h1>
+        <h2 class="saque-sub-title">Saldo: R$ {{ saldoCliente }}</h2>
+      </header>
+      <div class="value0">
+        <input type="number" class="input0" placeholder="Digite o valor" [(ngModel)]="valorSaque" name="valor" required>
+      </div>
+      <div class="button-container">
+        <button id="btn-02" type="button" (click)="verificarSaldo()">Confirmar</button>
+      </div>
+      <div *ngIf="mensagemErro" class="error-message">
+        {{ mensagemErro }}
+      </div>
+    </article>
+  </section>
