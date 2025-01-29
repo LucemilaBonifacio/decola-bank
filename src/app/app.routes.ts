@@ -4,6 +4,8 @@ import { LoginClienteComponent } from './components/cliente/login-cliente/login-
 import { FormAbrirContaComponent } from './components/form-abrir-conta/form-abrir-conta.component';
 import { TelaInicialClienteComponent } from './components/cliente/tela-inicial-cliente/tela-inicial-cliente.component';
 import { LoginGerenteComponent } from './components/gerente/login-gerente/login-gerente.component';
+import { SaqueComponent } from './components/cliente/tela-inicial-cliente/saque/saque.component';
+
 
 
 
@@ -14,7 +16,8 @@ export const routes: Routes = [
 {path: 'abra-sua-conta', component: FormAbrirContaComponent},
 {path: 'login/cliente', component: LoginClienteComponent},
 {path: 'tela-inicial-cliente', component: TelaInicialClienteComponent},
-{path: 'login/gerente', component: LoginGerenteComponent}
+{path: 'login/gerente', component: LoginGerenteComponent},
+{path: 'saque', component: SaqueComponent }
 
 
 
