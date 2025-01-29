@@ -4,7 +4,12 @@ import { LoginClienteComponent } from './components/cliente/login-cliente/login-
 import { FormAbrirContaComponent } from './components/form-abrir-conta/form-abrir-conta.component';
 import { TelaInicialClienteComponent } from './components/cliente/tela-inicial-cliente/tela-inicial-cliente.component';
 import { LoginGerenteComponent } from './components/gerente/login-gerente/login-gerente.component';
+
+import { SaqueComponent } from './components/cliente/tela-inicial-cliente/saque/saque.component';
+import { PagamentoComponent } from './components/cliente/tela-inicial-cliente/pagamento/pagamento.component';
+
 import { DepositoComponent } from './components/cliente/tela-inicial-cliente/deposito/deposito.component';
+
 
 
 
@@ -17,6 +22,9 @@ export const routes: Routes = [
 {path: 'login/cliente', component: LoginClienteComponent},
 {path: 'tela-inicial-cliente', component: TelaInicialClienteComponent},
 {path: 'login/gerente', component: LoginGerenteComponent},
+
+{path: 'saque', component: SaqueComponent },
+{path: 'pagamento', component: PagamentoComponent},
 {path: 'deposito',component: DepositoComponent}
 
 
