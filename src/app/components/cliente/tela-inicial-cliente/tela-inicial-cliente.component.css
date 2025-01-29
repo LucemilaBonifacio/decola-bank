@@ -1,98 +1,54 @@
 
+.card-container {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 50px; 
+  justify-content: center;
+}
 
-.card-title-main-app{
-    font-size: 40px;
-    color: #FB8207;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    animation: titleAnimation 1s ease-out;
-  }
-  
-  
-  @keyframes titleAnimation {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  .saldação{
-    text-decoration: underline;
-    text-decoration-color: #FB8207;
-    padding-bottom: 20px;
-  }  
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center; 
+  height: 200px;
+  width: 150px;
+  border-radius: 15px;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 10px;
+  cursor: pointer; 
+  margin-top: 10px;
+}
 
-  .saldo{
-    padding-bottom: 20px;
-  }
+.card:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); 
+  border: 1.5px solid #FB8207; 
+}
 
-  .card {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; 
-    justify-content: flex-start; 
-    height: 230px !important;
-    border-radius: 15px;
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    padding: 20px;
-    cursor: pointer; 
-   
-  }
-  
-    .card:hover {
-    transform: translateY(-5px); 
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); 
-    border: 1.5px solid #FB8207; 
-  }
+.card-img-top {
+  margin: 0; 
+  margin-bottom: 10px; 
+  width: 50px;
+  height: 50px;
   
   
-  .card-img-top {
-    margin: 0; 
-    margin-bottom: 10px; 
-    width: 50px;
-    height: 50px;
-    
+}
+.hello{
+  text-decoration: underline;
+  text-decoration-color: #FB8207;
+  padding-bottom: 15px;
+}
+.saldo{
+  padding-bottom: 35px;
+}
 
-  }
-  
-  
-  .card-title {
-    text-align: left; 
-  }
-  
-  
-  .card-text {
-    color: rgb(152, 150, 150);
-    font-weight: 500;
-  }
-  
-  /* @media (max-width: 768px) {
-    .card {
-      height: 250px !important;
-      align-items: flex-start;
-      justify-content: flex-start;
-    }
-  
-    img {
-      width: 40px;
-      height: 40px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .card {
-      height: 220px !important;
-      align-items: flex-start;
-      justify-content: flex-start;
-    }
-  
-    img {
-      width: 35px;
-      height: 35px;
-    }
-  } */
-  
+.card-title {
+  text-align: center; 
+}
+
+.card-text {
+  color: rgb(152, 150, 150);
+  font-weight: 500;
+}
