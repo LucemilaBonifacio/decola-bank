@@ -8,6 +8,6 @@ export class Cliente {
     {}
     
     public mostrar() : string{
-        return `CPF: ${this.cpf}\nNome: ${this.nome}\nEmail: ${this.email}\nFone: ${this.telefone}`;
+        return `CPF: ${this.cpf}\nNome: ${this.nome}\nEmail: ${this.email}\nTelefone: ${this.telefone}`;
     }
 }
