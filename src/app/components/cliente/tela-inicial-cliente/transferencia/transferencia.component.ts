@@ -4,16 +4,17 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SaldoService } from '../../../../services/saldo.service';
 
-
 @Component({
-  selector: 'app-saque',
+  selector: 'app-transferencia',
   imports: [CommonModule, FormsModule],
-  templateUrl: './saque.component.html',
-  styleUrls: ['./saque.component.css']
+  templateUrl: './transferencia.component.html',
+  styleUrls: ['./transferencia.component.css']
 })
-export class SaqueComponent implements OnInit {
+export class TransferenciaComponent implements OnInit {
   saldoCliente: number = 0; 
-  valorSaque: number = 0;
+  agenciaDestinatario: string = ''; 
+  contaDestinatario: string = '';
+  valorTransferencia: number | null = null; 
   mensagemErro: string = '';
 
   constructor(private router: Router, private saldoService: SaldoService) {}
@@ -23,11 +24,14 @@ export class SaqueComponent implements OnInit {
   }
 
   verificarSaldo() {
-    if (this.valorSaque > this.saldoCliente) {
+    if (this.valorTransferencia === null || this.valorTransferencia <= 0) {
+      this.mensagemErro = 'Erro: O valor da transferência deve ser maior que zero.';
+    } else if (this.valorTransferencia > this.saldoCliente) {
       this.mensagemErro = 'Erro: O valor digitado é maior que o saldo disponível.';
     } else {
       this.mensagemErro = '';
-      this.saldoService.atualizarSaldo(-this.valorSaque);
+      this.saldoService.atualizarSaldo(-this.valorTransferencia);
+      this.saldoCliente = this.saldoService.getSaldo(); 
       this.router.navigate(['/tela-inicial-cliente']);
     }
   }

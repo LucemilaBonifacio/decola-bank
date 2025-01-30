@@ -1,58 +1,47 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SaldoService } from '../../../../services/saldo.service';
+
 
 @Component({
   selector: 'app-deposito',
   imports: [CommonModule, FormsModule],
   templateUrl: './deposito.component.html',
-  styleUrls: ['./deposito.component.css'],
+  styleUrls: ['./deposito.component.css']
+
 })
-export class DepositoComponent {
+export class DepositoComponent implements OnInit {
+  saldoCliente: number = 1000; 
   agencia: string = '';
   numConta: string = '';
-  valor: number = 0;
-  saldoCliente: number = 1000; // Exemplo de saldo inicial
-  erroMensagem: string = ''; 
+  valorDeposito: number = 0;
+  mensagemErro: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private saldoService: SaldoService) {}
 
-  // Método para validar e processar o depósito
-  verificarDeposito(): void {
-    this.erroMensagem = ''; // Limpar a mensagem de erro antes de cada validação
+  ngOnInit(): void {
+    this.saldoCliente = this.saldoService.getSaldo(); 
+  }
 
-    // Validação da agência
-    if (!this.agencia || this.agencia.length !== 4) {
-      this.erroMensagem = 'A agência deve conter 4 dígitos.';
-      return;
+  validateLength(event: Event, maxLength: number): void {
+    const input = event.target as HTMLInputElement;
+    if (input.value.length > maxLength) {
+      input.value = input.value.slice(0, maxLength);
+    }
+  }
+// Ete metodo não está atualizando o saldo Cliente(Rever)
+  onSubmit(form: NgForm): void {
+    if (form.valid) {
+      this.saldoService.atualizarSaldo(+this.valorDeposito);
+      this.saldoCliente = this.saldoService.getSaldo(); 
+      this.router.navigate(['/tela-inicial-cliente']);
+      console.log('Formulário válido', form.value);
+    } else {
+      this.mensagemErro = 'Erro: Formulário inválido';
+      console.log('Formulário inválido');
     }
 
-    // Validação da conta
-    if (!this.numConta || this.numConta.length !== 7) {
-      this.erroMensagem = 'O número da conta deve conter 7 dígitos.';
-      return;
-    }
-
-    // Validação do valor
-    if (!this.valor || this.valor <= 0) {
-      this.erroMensagem = 'O valor do depósito deve ser maior que zero.';
-      return;
-    }
-
-    // Atualizar o saldo do cliente
-    this.saldoCliente += this.valor;
-    
-    // Redirecionar para a tela inicial do cliente
-    this.router.navigate(['/tela-inicial-cliente']);
-
-    // Exibir sucesso no console
-    console.log('Depósito efetuado com sucesso!', {
-      agencia: this.agencia,
-      numConta: this.numConta,
-      valor: this.valor,
-      saldoAtual: this.saldoCliente,
-    });
   }
 }
