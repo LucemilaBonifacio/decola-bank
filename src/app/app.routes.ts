@@ -22,6 +22,7 @@ export const routes: Routes = [
 {path: 'login/cliente', component: LoginClienteComponent},
 {path: 'tela-inicial-cliente', component: TelaInicialClienteComponent},
 {path: 'login/gerente', component: LoginGerenteComponent},
+
 {path: 'SaqueComponent', component: SaqueComponent},
 {path: 'deposito',component: DepositoComponent},
 {path: 'pagamento',component: PagamentoComponent},
