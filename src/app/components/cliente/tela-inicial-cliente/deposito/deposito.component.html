@@ -1,0 +1,59 @@
+<section class="card-login-container">
+  <div class="card-login">
+    <div class="card-login-titulo">
+      <header class="title">
+        <h1 class="deposito-title">Depósito</h1>
+        <h2 class="deposito-sub-title">Saldo: R$ {{ saldoCliente }}</h2>
+      </header>
+    </div>
+    <form #loginForm="ngForm">
+      <!-- Campo Agência -->
+      <div class="value0">
+        <input
+          type="number"
+          class="input0"
+          placeholder="Agência"
+          name="agencia"
+          [(ngModel)]="agencia"
+          maxlength="4"
+          required
+        />
+      </div>
+
+      <!-- Campo Conta -->
+      <div class="value1">
+        <input
+          type="number"
+          class="input1"
+          placeholder="Conta"
+          name="numConta"
+          [(ngModel)]="numConta"
+          maxlength="7"
+          required
+        />
+      </div>
+
+      <!-- Campo Valor -->
+      <div class="value2">
+        <input
+          type="number"
+          class="input2"
+          placeholder="Valor"
+          name="valor"
+          [(ngModel)]="valorDeposito"
+          required
+        />
+      </div>
+
+      <!-- Exibição de Mensagens de Erro -->
+      <div *ngIf="mensagemErro" class="erro-mensagem">
+        <small>{{ mensagemErro }}</small>
+      </div>
+
+      <!-- Botão -->
+      <div class="button-container">
+        <button id="btn-02" type="button" (click)="onSubmit(loginForm)">Confirmar</button>
+      </div>
+    </form>
+  </div>
+</section>
