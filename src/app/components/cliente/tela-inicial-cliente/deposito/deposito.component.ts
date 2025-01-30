@@ -10,12 +10,12 @@ import { SaldoService } from '../../../../services/saldo.service';
   imports: [CommonModule, FormsModule],
   templateUrl: './deposito.component.html',
   styleUrls: ['./deposito.component.css']
+
 })
 export class DepositoComponent implements OnInit {
   saldoCliente: number = 1000; 
   agencia: string = '';
   numConta: string = '';
-  senha: string = '';
   valorDeposito: number = 0;
   mensagemErro: string = '';
 
@@ -42,5 +42,6 @@ export class DepositoComponent implements OnInit {
       this.mensagemErro = 'Erro: Formulário inválido';
       console.log('Formulário inválido');
     }
+
   }
 }

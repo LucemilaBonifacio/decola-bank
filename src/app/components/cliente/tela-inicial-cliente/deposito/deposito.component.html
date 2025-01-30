@@ -1,36 +1,59 @@
 <section class="card-login-container">
     <div class="card-login">
-        <div class="card-login-titulo">
-            <h1 class="login-titulo">Depósito</h1>
+      <div class="card-login-titulo">
+        <header class="title">
+          <h1 class="deposito-title">Depósito</h1>
+          <h2 class="deposito-sub-title">Saldo: R$ {{ saldoCliente }}</h2>
+        </header>
+      </div>
+      <form #loginForm="ngForm">
+        <!-- Campo Agência -->
+        <div class="value0">
+          <input
+            type="number"
+            class="input0"
+            placeholder="Agência"
+            name="agencia"
+            [(ngModel)]="agencia"
+            maxlength="4"
+            required
+          />
         </div>
-        
-        <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-            <div class="value0">
-                <input type="number" class="input0" placeholder="Agência" name="agencia" [(ngModel)]="agencia" maxlength="4" (input)="validateLength($event, 4)" required minlength="4" maxlength="4">
-                <div *ngIf="loginForm.controls['agencia']?.invalid && loginForm.controls['agencia']?.touched">
-                    <small *ngIf="loginForm.controls['agencia']?.errors?.['required']">Agência é obrigatória.</small>
-                    <small *ngIf="loginForm.controls['agencia']?.errors?.['minlength']">Agência deve ter 4 dígitos.</small>
-                    <small *ngIf="loginForm.controls['agencia']?.errors?.['maxlength']">Agência deve ter no máximo 4 dígitos.</small>
-                </div>
-            </div>
-            <div class="value1">
-                <input type="number" class="input1" placeholder="Conta" name="numConta" [(ngModel)]="numConta" maxlength="7" (input)="validateLength($event, 7)" required minlength="7" maxlength="7">
-                <div *ngIf="loginForm.controls['numConta']?.invalid && loginForm.controls['numConta']?.touched">
-                    <small *ngIf="loginForm.controls['numConta']?.errors?.['required']">Conta é obrigatória.</small>
-                    <small *ngIf="loginForm.controls['numConta']?.errors?.['minlength']">Conta deve ter 7 dígitos.</small>
-                    <small *ngIf="loginForm.controls['numConta']?.errors?.['maxlength']">Conta deve ter no máximo 7 dígitos.</small>
-                </div>
-            </div>
-            <div class="value2">
-                <input type="number" class="input2" placeholder="valor" name="senha" [(ngModel)]="senha" required>
-                <div *ngIf="loginForm.controls['senha']?.invalid && loginForm.controls['senha']?.touched">
-                    <small *ngIf="loginForm.controls['senha']?.errors?.['required']">O valor é obrigatório</small>
-                </div>
-            </div>
-            <div>
-                <button id="btn-02" type="submit" routerLink="/tela-inicial-cliente" >Confirmar</button>
-            </div>
-        </form>
+  
+        <!-- Campo Conta -->
+        <div class="value1">
+          <input
+            type="number"
+            class="input1"
+            placeholder="Conta"
+            name="numConta"
+            [(ngModel)]="numConta"
+            maxlength="7"
+            required
+          />
+        </div>
+  
+        <!-- Campo Valor -->
+        <div class="value2">
+          <input
+            type="number"
+            class="input2"
+            placeholder="Valor"
+            name="valor"
+            [(ngModel)]="valor"
+            required
+          />
+        </div>
+  
+        <!-- Exibição de Mensagens de Erro -->
+        <div *ngIf="erroMensagem" class="erro-mensagem">
+          <small>{{ erroMensagem }}</small>
+        </div>
+  
+        <!-- Botão -->
+        <div class="button-container">
+          <button id="btn-02" type="button" (click)="verificarDeposito()">Confirmar</button>
+        </div>
+      </form>
     </div>
-</section>
- 
+  </section>
