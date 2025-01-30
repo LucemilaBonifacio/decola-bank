@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login-gerente',
-  imports:[FormsModule, CommonModule],
+  imports:[FormsModule, CommonModule, RouterLink],
   templateUrl: './login-gerente.component.html',
   styleUrls: ['./login-gerente.component.css']
 })
@@ -23,7 +24,6 @@ export class LoginGerenteComponent implements OnInit {
 
   onSubmit(form: NgForm): void {
     if (form.valid) {
-      // Processar o login
       console.log('Formulário válido', form.value);
     } else {
       console.log('Formulário inválido');
