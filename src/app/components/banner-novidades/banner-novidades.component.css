@@ -59,10 +59,6 @@
   transition: filter 0.3s ease; /* Efeito de transição suave ao passar o mouse */
 }
 
-/* .modal-body p {
-  font-weight: normal; 
-  text-align: left; 
-} */
 .modal-content .modal-body p {
   font-weight: normal !important;
   text-align: left;
@@ -75,14 +71,34 @@
     margin-left: 10px;
     margin-right: 10px;
   }
-
+  .card-img01{
+    width:300x ;
+    height:300px ;
+  }
+  .card-img02{
+    width:350px ;
+    height:350px ;
+  }
   .card-img03{
     margin-top: 15px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    /* margin-left: 5px; */
-   
-    /* padding-left:5px ;
-    padding-right: 5px; */
+    width:350px ;
+    height:350px;   
+  }
+
+  .custom-card-overlay {
+    font-size: 20px; /* Ajuste o tamanho do texto */
+    
+  }
+
+  @media(max-width: 560px){
+    .card-img03{
+      margin-top: 15px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      width:350px ;
+      height:540px;   
+    }
   }
 }
