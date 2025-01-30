@@ -1,7 +1,7 @@
 /* Geral */
 
 .card-title-main-app{
-  color:#FB8207;
+  color: #ff7900;
   margin-bottom: 40px;
   margin-top: 40px;  
 }
@@ -83,6 +83,8 @@
     margin-top: 15px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+
+
     width:350px ;
     height:350px;   
   }
@@ -100,5 +102,6 @@
       width:350px ;
       height:540px;   
     }
+
   }
 }

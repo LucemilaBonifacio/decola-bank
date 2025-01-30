@@ -10,7 +10,7 @@
 }
 
 .btn {
-    background-color: #FB8207;
+    background-color: #ff7900;
     border: none;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.2);
@@ -34,6 +34,8 @@
     padding: 1.5rem; /* Ajusta o espaçamento interno */
    
   }
+  
+
   .accordion-button {
     background-color: transparent;
     border: none;
@@ -101,6 +103,4 @@
         max-width: 80%; /* Ajusta o tamanho da imagem em telas muito pequenas */
         margin: 0 auto; /* Centraliza a imagem */
     }
-      
-      
 }
