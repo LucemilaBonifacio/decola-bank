@@ -1,21 +1,26 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SaldoService } from '../../../../services/saldo.service';
 
 @Component({
   selector: 'app-pix',
   imports: [CommonModule, FormsModule],
   templateUrl: './pix.component.html',
-  styleUrl: './pix.component.css'
+  styleUrls: ['./pix.component.css']
 })
-export class PixComponent  {
-  saldoCliente: number = 1000; // Saldo do cliente
+export class PixComponent implements OnInit {
+  saldoCliente: number = 0; 
   valorPix: number = 0;
   selectedOption: string = '';
-  mensagemErro: string = ''; // Mensagem de erro
+  mensagemErro: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private saldoService: SaldoService) {}
+
+  ngOnInit(): void {
+    this.saldoCliente = this.saldoService.getSaldo(); 
+  }
 
   realizarPix() {
     if (this.valorPix <= 0) {
@@ -24,12 +29,9 @@ export class PixComponent  {
       this.mensagemErro = 'Erro: O valor do Pix é maior que o saldo disponível.';
     } else {
       this.mensagemErro = '';
-      this.saldoCliente -= this.valorPix; // Subtrai o valor do Pix do saldo
-    // console.log('Valor do Pix:', this.valorPix); 
-    // console.log('Saldo do Cliente:', this.saldoCliente); 
+      this.saldoService.atualizarSaldo(-this.valorPix);
+      this.saldoCliente = this.saldoService.getSaldo(); 
       this.router.navigate(['/tela-inicial-cliente']);
-      // alert('Pix realizado com sucesso!'); // Exibe uma mensagem de sucesso
     }
   }
 }
-    
