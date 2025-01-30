@@ -1,0 +1,27 @@
+<section class="card-pagamento-container">
+    <form class="card-pagamento">
+      <header class="title">
+        <h1 class="pagamento-title">Pagamento</h1>
+        <h2 class="pagamento-sub-title">Saldo: R$ {{ saldoCliente }}</h2>
+      </header>
+      <div class="value0">
+        <input type="number" class="input0" placeholder="Digite o valor" [(ngModel)]="valorPagamento" name="valor" required>
+      </div>
+      
+      <div class="value1">
+        <input type="number" class="input1" placeholder="Digite o código de barras" [(ngModel)]="codigoPagamento" name="codigoPagamento" required>
+      </div> 
+      <div class="value2">
+        <input type="date" class="input2" placeholder="Data vencimento" [(ngModel)]="dataVencimento" name="dataVencimento" required>
+      </div>
+      <div class="value3">
+        <input type="text" class="input3" placeholder="Descrição" [(ngModel)]="descricao" name="descricao" required>
+      </div>
+      <div class="button-container">
+        <button id="btn-02" type="button" (click)="verificarSaldo()">Confirmar</button>
+      </div>
+      <div *ngIf="mensagemErro" class="error-message">
+        {{ mensagemErro }}
+      </div>
+    </form>
+  </section>

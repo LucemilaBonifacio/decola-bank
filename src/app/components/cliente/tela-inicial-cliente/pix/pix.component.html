@@ -1,0 +1,26 @@
+<!-- corrigir sd tag com form e label, colocar selecione uma chave, campo da chave e valor -->
+<section class="card-pix-container">
+    <article class="card-pix">
+      <header class="title">
+        <h1 class="pix-title">Pix</h1>
+        <h2 class="pix-sub-title">Saldo: R$ {{ saldoCliente }}</h2>
+      </header>
+      <div class="value0">
+        <select class="dropdown" [(ngModel)]="selectedOption" name="options" required>
+          <option value="" disabled selected>Selecione uma opção</option>
+          <option value="option1">Opção 1</option>
+          <option value="option2">Opção 2</option>
+          <option value="option3">Opção 3</option>
+        </select>
+      </div>      
+      <div class="value01">
+        <input type="number" class="input01" placeholder="Digite o valor do Pix" [(ngModel)]="valorPix" name="valorPix" required>
+      </div>
+      <div class="button-container">
+        <button id="btn-02" type="button" (click)="realizarPix()">Realizar Pix</button>
+      </div>
+      <div *ngIf="mensagemErro" class="error-message">
+        {{ mensagemErro }}
+      </div>
+    </article>
+  </section>
