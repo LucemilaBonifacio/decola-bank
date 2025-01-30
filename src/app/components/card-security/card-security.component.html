@@ -2,69 +2,79 @@
   <div class="card-body">
     <h4 class="card-title">Dicas de segurança</h4>
     <p>Fique atento aos golpes e fraudes, proteja a sua conta.</p>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Acessar dicas de segurança
-    </button>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="row align-items-center">
-              <!-- Coluna da imagem -->
-              <div class="col-12 col-md-6 text-center mb-3 mb-md-0">
-                <img 
-                  class="security-image img-fluid" 
-                  src="assets/security-image02.png" 
-                  alt="Imagens com cadeados" 
-                  style="max-width: 100%; height: auto; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);">
-              </div>
-              <!-- Coluna do texto com fundo -->
-              <div class="col-12 col-md-6 p-4 text-column" style="background-color: #f9f9f9; border-radius: 10px;">
-                <h2>Mantenha sua conta segura</h2>
-
-                <h5><strong>1. Práticas de Segurança Digital:</strong></h5>
-                <p>
-                  • Nunca compartilhe suas senhas ou códigos de acesso com terceiros. <br>
-                  • Esteja sempre atento às tentativas de golpe.
-                </p>
-
-                <h5><strong>2. Tecnologia de Proteção do Banco:</strong></h5>
-                <p>
-                  • Uso de tecnologia de ponta para proteger suas transações. <br>
-                  • Monitoramento constante de atividades suspeitas.
-                </p>
-
-                <h5><strong>3. Ferramentas de Segurança Adicionais:</strong></h5>
-                <p>
-                  • Autenticação em duas etapas para aumentar a proteção. <br>
-                  • Notificações em tempo real para alertar sobre possíveis ameaças.
-                </p>
-
-                <h5><strong>4. Canais de Comunicação Oficiais:</strong></h5>
-                <p>
-                  • Nenhuma instituição financeira solicita informações confidenciais por telefone, e-mail ou mensagens. <br>
-                  • Em caso de dúvidas, entre em contato apenas pelos canais oficiais.
-                </p>
-
-                <h5><strong>5. Proteção e Tradição Bancária:</strong></h5>
-                <p>
-                  • Proteja-se com práticas de segurança e aproveite a praticidade do banco digital com tranquilidade.
-                </p>
-              </div>
-            </div>
-          </div>
-          <!-- Footer com o botão "Fechar" -->
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+            1. Práticas de Segurança Digital:
+          </button>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+            • Nunca compartilhe suas senhas ou códigos de acesso com terceiros. <br>
+            • Faça sempre combinações fortes para as suas senhas. Não use números sequenciais ou datas de aniversário.
           </div>
         </div>
       </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+            2. Navegação na internet:
+          </button>
+        </h2>
+        <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+            • Evite acessar páginas web para baixar programas ilegais ou de aparência duvidosa, pois alguns desses sites podem instalar ferramentas maliciosas automaticamente.  <br>
+            • Faça downloads apenas de sites confiáveis e conhecidos.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+            3. Verifique sempre suas contas:
+          </button>
+        </h2>
+        <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+            • Observe regularmente os lançamentos nas suas contas.<br>
+            • Caso observe qualquer comportamento incomum nas suas transações, entre em contato com o Banco imediatamente <br>            
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+            4. Canais de Comunicação Oficiais:
+          </button>
+        </h2>
+        <div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+            • Nenhuma instituição financeira solicita informações confidenciais por telefone, e-mail ou mensagens. <br>
+            • Em caso de dúvidas, entre em contato apenas pelos nosos canais oficiais.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+            5. Fique Atento a Golpes:
+          </button>
+        </h2>
+        <div id="flush-collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+            • Proteja-se contra fraudes e golpes seguindo nossas dicas de segurança. <br>
+            • Mantenha-se vigilante e desconfie de solicitações suspeitas de informações pessoais ou financeiras. Sua segurança é nossa prioridade!.
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
+
+    
