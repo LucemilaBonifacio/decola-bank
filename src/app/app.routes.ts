@@ -9,6 +9,7 @@ import { SaqueComponent } from './components/cliente/tela-inicial-cliente/saque/
 import { PagamentoComponent } from './components/cliente/tela-inicial-cliente/pagamento/pagamento.component';
 
 import { DepositoComponent } from './components/cliente/tela-inicial-cliente/deposito/deposito.component';
+import { TransferenciaComponent } from './components/cliente/tela-inicial-cliente/transferencia/transferencia.component';
 
 
 
@@ -25,7 +26,8 @@ export const routes: Routes = [
 
 {path: 'saque', component: SaqueComponent },
 {path: 'pagamento', component: PagamentoComponent},
-{path: 'deposito',component: DepositoComponent}
+{path: 'deposito',component: DepositoComponent},
+{path: 'transferencia', component: TransferenciaComponent}
 
 
 
