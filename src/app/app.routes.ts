@@ -17,7 +17,6 @@ import { TransferenciaComponent } from './components/cliente/tela-inicial-client
 import { PixComponent } from './components/cliente/tela-inicial-cliente/pix/pix.component';
 
 
-
 export const routes: Routes = [
 {path:"", redirectTo:"home", pathMatch:"full"},
 {path: 'home', component: HomeComponent},
@@ -25,10 +24,12 @@ export const routes: Routes = [
 {path: 'login/cliente', component: LoginClienteComponent},
 
 {path: 'login/gerente', component: LoginGerenteComponent},
+
 {path: 'clientes', component: GerenteComponent}, // tabela crud na tela inicial após autenticação do gerente
 {path: 'clientes/novo', component: ClienteNovoComponent}, // button acima da tabela CREATE
-{path: 'clientes/alteracao/:id', component: ClienteAlteracaoComponent}, // ícone do lápis UPDATE
-{path: 'clientes/extrato/:id', component: ExtratoComponent}, // ícone extrato para consultar o extrato relacionado ao cliente READ
+{path: 'clientes/alterar/:id', component: ClienteAlteracaoComponent}, // ícone do lápis UPDATE
+{path: 'clientes/conta/:id', component: ContaComponent}, // icone da lupa ou olho para exibir detalhes da conta do respectivo cliente na tabela READ
+{path: 'clientes/conta/extrato/:id', component: ExtratoComponent}, // ícone extrato para consultar o extrato relacionado ao cliente READ
 
 {path: 'tela-inicial-cliente', component: TelaInicialClienteComponent},
 {path: 'saque', component: SaqueComponent },
@@ -38,6 +39,6 @@ export const routes: Routes = [
 {path: 'pix',component: PixComponent },
 
 
-{path: 'clientes/conta/:id', component: ContaComponent}, // icone da lupa ou olho para exibir detalhes da conta do respectivo cliente na tabela READ
 {path: 'clientes/conta/:id/encerrar', component: ContaEncerrarComponent} // encerramento de conta visível apenas ao exibir detalhes da conta DELETE
+
 ];
