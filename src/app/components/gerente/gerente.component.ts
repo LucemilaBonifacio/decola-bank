@@ -11,7 +11,7 @@ import { ClientesListaComponent } from './clientes-lista/clientes-lista.componen
 export class GerenteComponent {
   constructor(private router: Router) {}
 
-  novoCliente(): void {
+  novo(): void {
     this.router.navigate(['/clientes/novo']);
   }
 }

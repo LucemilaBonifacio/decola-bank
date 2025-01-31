@@ -24,6 +24,11 @@ export class GerenteService {
     return this.http.get<Cliente>(`${this.baseUrl}/${url}`);
   }
 
+  public postCliente(cliente: Cliente) : Observable<Cliente> {
+    const url : string = "novo";
+    return this.http.post<Cliente>(`${this.baseUrl}/${url}`, cliente);
+  }
+
   public putClientes(cliente: Cliente, id: number): Observable<Cliente> {
     const url = `alterar/${id}`;
     return this.http.put<Cliente>(`${this.baseUrl}/${url}`, cliente);
