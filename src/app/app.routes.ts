@@ -15,6 +15,7 @@ import { PagamentoComponent } from './components/cliente/tela-inicial-cliente/pa
 import { DepositoComponent } from './components/cliente/tela-inicial-cliente/deposito/deposito.component';
 import { TransferenciaComponent } from './components/cliente/tela-inicial-cliente/transferencia/transferencia.component';
 import { PixComponent } from './components/cliente/tela-inicial-cliente/pix/pix.component';
+import { ViewExtratoComponent } from './components/conta/extrato/view-extrato/view-extrato.component';
 
 
 export const routes: Routes = [
@@ -35,6 +36,7 @@ export const routes: Routes = [
 {path: 'saque', component: SaqueComponent },
 {path: 'pagamento', component: PagamentoComponent},
 {path: 'extrato', component: ExtratoComponent},
+{path: 'view-extrato', component: ViewExtratoComponent},
 {path: 'deposito',component: DepositoComponent},
 {path: 'transferencia', component: TransferenciaComponent},
 {path: 'pix',component: PixComponent },
