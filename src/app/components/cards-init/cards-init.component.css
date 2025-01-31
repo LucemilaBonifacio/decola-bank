@@ -45,6 +45,7 @@
 .card img {
   margin: 0; /* Remove margens adicionais */
   margin-bottom: 10px; /* Adiciona espaço abaixo da imagem */
+  margin-left: 10px;
   width: 50px;
   height: 50px;
 }
