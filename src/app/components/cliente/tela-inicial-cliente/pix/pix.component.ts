@@ -12,6 +12,7 @@ import { SaldoService } from '../../../../services/saldo.service';
 })
 export class PixComponent implements OnInit {
   saldoCliente: number = 0; 
+  chavePix: string = '';
   valorPix: number = 0;
   selectedOption: string = '';
   mensagemErro: string = '';
