@@ -20,7 +20,7 @@ export class GerenteService {
   }
 
   public getCliente(id: number) : Observable<Cliente> {
-    const url = `buscar/${id}`;
+    const url = `buscar/cliente/${id}`;
     return this.http.get<Cliente>(`${this.baseUrl}/${url}`);
   }
 
