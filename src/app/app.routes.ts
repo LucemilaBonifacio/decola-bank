@@ -33,9 +33,10 @@ export const routes: Routes = [
 {path: 'tela-inicial-cliente', component: TelaInicialClienteComponent},
 {path: 'saque', component: SaqueComponent },
 {path: 'pagamento', component: PagamentoComponent},
+{path: 'extrato', component: ExtratoComponent},
 {path: 'deposito',component: DepositoComponent},
 {path: 'transferencia', component: TransferenciaComponent},
-{path: 'pix',component: PixComponent }
+{path: 'pix',component: PixComponent },
 
 
 {path: 'clientes/conta/:id', component: ContaComponent}, // icone da lupa ou olho para exibir detalhes da conta do respectivo cliente na tabela READ
