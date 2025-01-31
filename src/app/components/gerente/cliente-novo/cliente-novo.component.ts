@@ -35,8 +35,8 @@ export class ClienteNovoComponent {
   constructor(private router: Router) {}
 
   // Método para fechar o formulário
-  fecharFormulario() {
-    this.router.navigate(['/home']);
+  cancelar() {
+    this.router.navigate(['/clientes']);
   }
 
   // Método chamado ao submeter o formulário
@@ -54,6 +54,6 @@ export class ClienteNovoComponent {
   }
   // Método para concluir o processo
   concluir() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/clientes']);
   }
 }
