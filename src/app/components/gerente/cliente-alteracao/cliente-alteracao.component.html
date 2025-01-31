@@ -1,1 +1,26 @@
-<p>cliente-alteracao works!</p>
+<div class="container mt-3">
+    <h2 class="text text-center">Editar dados do Cliente</h2>
+    <form>
+        <div class="mb-3">
+            <label class="form-label">Cpf:</label>
+            <input type="text" class="form-control" name="cpf" [(ngModel)]="cliente.cpf" readonly />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Nome:</label>
+            <input type="text" class="form-control" name="nome" [(ngModel)]="cliente.nome"/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Email:</label>
+            <input type="text" class="form-control" name="email" [(ngModel)]="cliente.email"/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Telefone:</label>
+            <input type="text" class="form-control" name="telefone" [(ngModel)]="cliente.telefone"/>
+        </div>
+        <div>
+            <button class="btn action-button  me-2" (click)="alterar(cliente)">Salvar</button>  
+            <button class="btn action-button" (click)="fechar()">Fechar</button>
+        </div>
+    </form>
+</div>
+
