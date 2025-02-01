@@ -1,3 +1,4 @@
+
 <div class="container mt-3">
   <form #form="ngForm" (ngSubmit)="onSubmit(form)">
     <div class="card shadow p-4">
@@ -71,6 +72,7 @@
             #cepModel="ngModel"
             required
             placeholder="Digite o CEP"
+            (blur)="buscarEndereco()"
           />
           <div *ngIf="cepModel.touched && cepModel.invalid" class="text-danger">
             O CEP é obrigatório.
