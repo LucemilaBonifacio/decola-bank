@@ -1,8 +1,7 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { SaldoService } from '../../../services/saldo.service';
-
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-tela-inicial-cliente',
@@ -17,6 +16,13 @@ export class TelaInicialClienteComponent implements OnInit {
   constructor(private saldoService: SaldoService) {}
 
   ngOnInit(): void {
-    this.saldoCliente = this.saldoService.getSaldo();
+    this.saldoService.getSaldo(1).subscribe(
+      (data: number) => {
+        this.saldoCliente = data;
+      },
+      (error) => {
+        console.error('Erro ao buscar saldo', error);
+      }
+    );
   }
 }

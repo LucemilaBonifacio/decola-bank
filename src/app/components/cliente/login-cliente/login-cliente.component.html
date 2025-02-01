@@ -6,7 +6,7 @@
         
         <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
             <div class="value0">
-                <input type="number" class="input0" placeholder="Agência" name="agencia" [(ngModel)]="agencia" maxlength="4" (input)="validateLength($event, 4)" required minlength="4" maxlength="4">
+                <input type="number" class="input0" placeholder="Agência" name="agencia" maxlength="4" (input)="validateLength($event, 4)" required minlength="4" maxlength="4">
                 <div *ngIf="loginForm.controls['agencia']?.invalid && loginForm.controls['agencia']?.touched">
                     <small *ngIf="loginForm.controls['agencia']?.errors?.['required']">Agência é obrigatória.</small>
                     <small *ngIf="loginForm.controls['agencia']?.errors?.['minlength']">Agência deve ter 4 dígitos.</small>
@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="value1">
-                <input type="number" class="input1" placeholder="Conta" name="numConta" [(ngModel)]="numConta" maxlength="7" (input)="validateLength($event, 7)" required minlength="7" maxlength="7">
+                <input type="number" class="input1" placeholder="Conta" name="numConta" [(ngModel)]="conta.numConta" maxlength="7" (input)="validateLength($event, 7)" required minlength="7" maxlength="7">
                 <div *ngIf="loginForm.controls['numConta']?.invalid && loginForm.controls['numConta']?.touched">
                     <small *ngIf="loginForm.controls['numConta']?.errors?.['required']">Conta é obrigatória.</small>
                     <small *ngIf="loginForm.controls['numConta']?.errors?.['minlength']">Conta deve ter 7 dígitos.</small>
@@ -39,9 +39,8 @@
                 </div>
             </div>
             <div>
-                <button id="btn-02" type="submit" routerLink="/tela-inicial-cliente" >Login</button>
+                <button id="btn-02" type="submit" routerLink="/tela-inicial-cliente">Login</button>
             </div>
         </form>
     </div>
 </section>
- 

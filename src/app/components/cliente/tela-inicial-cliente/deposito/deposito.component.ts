@@ -11,7 +11,7 @@ import { SaldoService } from '../../../../services/saldo.service';
   styleUrls: ['./deposito.component.css']
 })
 export class DepositoComponent implements OnInit {
-  saldoCliente: number = 1000;
+  saldoCliente: number = 0;
   agencia: string = '';
   numConta: string = '';
   valorDeposito: number = 0;
@@ -20,7 +20,14 @@ export class DepositoComponent implements OnInit {
   constructor(private router: Router, private saldoService: SaldoService) {}
 
   ngOnInit(): void {
-    this.saldoCliente = this.saldoService.getSaldo();
+    this.saldoService.getSaldo(1).subscribe(
+      (data: number) => {
+        this.saldoCliente = data;
+      },
+      (error) => {
+        console.error('Erro ao buscar saldo', error);
+      }
+    );
   }
 
   validateLength(event: Event, maxLength: number): void {
@@ -38,9 +45,16 @@ export class DepositoComponent implements OnInit {
         this.mensagemErro = 'Erro: A conta deve ter exatamente 7 dígitos.';
       } else {
         this.saldoService.atualizarSaldo(+this.valorDeposito);
-        this.saldoCliente = this.saldoService.getSaldo();
-        this.router.navigate(['/tela-inicial-cliente']);
-        console.log('Formulário válido', form.value);
+        this.saldoService.getSaldo(1).subscribe(
+          (data: number) => {
+            this.saldoCliente = data;
+            this.router.navigate(['/tela-inicial-cliente']);
+            console.log('Formulário válido', form.value);
+          },
+          (error) => {
+            console.error('Erro ao atualizar saldo', error);
+          }
+        );
       }
     } else {
       this.mensagemErro = 'Erro: Formulário inválido';

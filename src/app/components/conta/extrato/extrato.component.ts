@@ -22,7 +22,15 @@ export class ExtratoComponent implements OnInit {
   constructor(private router: Router, private saldoService: SaldoService, private extratoService: ExtratoService) {}
 
   ngOnInit(): void {
-    this.saldoCliente = this.saldoService.getSaldo(); 
+    this.saldoService.getSaldo(1).subscribe(
+      (data: number) => {
+        this.saldoCliente = data;
+      },
+      (error) => {
+        console.error('Erro ao buscar saldo', error);
+      }
+    );
+
     this.transacoes = this.extratoService.getTransacoes().map(transacao => new Extrato(
       transacao.idTransacao,
       transacao.titularConta,
