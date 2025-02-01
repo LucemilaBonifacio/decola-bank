@@ -20,7 +20,14 @@ export class TransferenciaComponent implements OnInit {
   constructor(private router: Router, private saldoService: SaldoService) {}
 
   ngOnInit(): void {
-    this.saldoCliente = this.saldoService.getSaldo(); 
+    this.saldoService.getSaldo(1).subscribe(
+      (data: number) => {
+        this.saldoCliente = data;
+      },
+      (error) => {
+        console.error('Erro ao buscar saldo', error);
+      }
+    );
   }
 
   verificarSaldo() {
@@ -31,8 +38,15 @@ export class TransferenciaComponent implements OnInit {
     } else {
       this.mensagemErro = '';
       this.saldoService.atualizarSaldo(-this.valorTransferencia);
-      this.saldoCliente = this.saldoService.getSaldo(); 
-      this.router.navigate(['/tela-inicial-cliente']);
+      this.saldoService.getSaldo(1).subscribe(
+        (data: number) => {
+          this.saldoCliente = data;
+          this.router.navigate(['/tela-inicial-cliente']);
+        },
+        (error) => {
+          console.error('Erro ao atualizar saldo', error);
+        }
+      );
     }
   }
 }
