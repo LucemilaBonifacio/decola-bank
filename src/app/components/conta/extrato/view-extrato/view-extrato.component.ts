@@ -53,7 +53,13 @@ export class ViewExtratoComponent implements OnInit {
       startY: 20
     });
 
-    doc.save('extrato.pdf');
+    // Gerar nome do arquivo concatenado com data, hora e minuto
+    const now = new Date();
+    const dateStr = now.toISOString().slice(0, 10); // AAAA-MM-DD
+    const timeStr = now.toTimeString().slice(0, 5).replace(':', '-'); // HH-MM
+    const fileName = `extrato_${dateStr}_${timeStr}.pdf`;
+
+    doc.save(fileName);
   }
 
   abrirModal() {
