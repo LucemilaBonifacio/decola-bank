@@ -3,6 +3,7 @@ import { AuthService } from '../../../services/auth.service';
 import { Conta } from '../../../classes/conta';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tela-inicial-cliente',
@@ -15,7 +16,7 @@ export class TelaInicialClienteComponent implements OnInit {
   saldo: number = 0;
   nomeCliente: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     const contaSalva = this.authService.getConta();
@@ -26,4 +27,9 @@ export class TelaInicialClienteComponent implements OnInit {
       this.saldo = this.conta.saldo;
     }
   }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login/cliente']);
+   }
 }
