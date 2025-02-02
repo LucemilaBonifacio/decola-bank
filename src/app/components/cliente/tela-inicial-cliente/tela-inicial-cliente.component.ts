@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { SaldoService } from '../../../services/saldo.service';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { Conta } from '../../../classes/conta';
+import { NgForm } from '@angular/forms';
+import { ClienteService } from '../../../services/clientes.service';
+
 
 @Component({
   selector: 'app-tela-inicial-cliente',
@@ -10,18 +13,37 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./tela-inicial-cliente.component.css']
 })
 export class TelaInicialClienteComponent implements OnInit {
-  saldoCliente: number = 0;
-  nomeCliente: string = 'Lucemila Bonifácio';
+  saldo: number = 0;
+  nomeCliente: string = '';
+  conta: Conta | null = null;
+  numConta: string = '';
 
-  constructor(private saldoService: SaldoService) {}
+  constructor(private clienteService: ClienteService) {
+    // Inicialize a conta com valores padrão
+    this.conta = new Conta('', '', 0, new Date(), 0, 0, '', '', 0);
+  }
 
   ngOnInit(): void {
-    this.saldoService.getSaldo(1).subscribe(
-      (data: number) => {
-        this.saldoCliente = data;
+    // Inicialização do componente
+  }
+
+  onSubmit(form: NgForm): void {
+    if (form.valid) {
+      this.obterConta(this.numConta);
+    } else {
+      console.log('Formulário inválido');
+    }
+  }
+
+  obterConta(numConta: string): void {
+    this.clienteService.obterConta(numConta).subscribe(
+      (conta: Conta) => {
+        this.conta = conta;
+        this.nomeCliente = conta.nomeCliente;
+        this.saldo = conta.saldo;
       },
-      (error) => {
-        console.error('Erro ao buscar saldo', error);
+      (error: any) => {
+        console.error('Erro ao obter conta', error);
       }
     );
   }

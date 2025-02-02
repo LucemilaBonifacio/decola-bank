@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { Conta } from '../../../classes/conta';
+import { ClienteService } from '../../../services/clientes.service';
 
 
 @Component({
@@ -14,8 +15,9 @@ import { Conta } from '../../../classes/conta';
 export class LoginClienteComponent {
   conta: Conta;
   senha: string = '';
+  numConta: string =''
 
-  constructor() {
+  constructor(private clienteService: ClienteService) {
     // Inicialize a conta com valores padrão
     this.conta = new Conta('', '', 0, new Date(), 0, 0, '', '', 0);
   }
@@ -30,10 +32,21 @@ export class LoginClienteComponent {
   onSubmit(form: NgForm): void {
     if (form.valid) {
       // Processar o login
-      console.log('Formulário válido', form.value);
-      console.log('Número da Conta:', this.conta.numConta); // Exemplo de como acessar o número da conta
+      this.obterConta(this.conta.numConta);
     } else {
       console.log('Formulário inválido');
     }
+  }
+
+  obterConta(numConta: string): void {
+    this.clienteService.obterConta(numConta).subscribe(
+      (conta: Conta) => {
+        this.conta = conta;
+        console.log('Dados da Conta:', this.conta);
+      },
+      (error) => {
+        console.error('Erro ao obter conta:', error);
+      }
+    );
   }
 }
