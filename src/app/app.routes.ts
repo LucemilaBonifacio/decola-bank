@@ -21,16 +21,16 @@ import { AuthGuard } from './guards/auth.guard';
 export const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
   { path: 'home', component: HomeComponent},
-  { path: 'tela-inicial-cliente', component: TelaInicialClienteComponent},
+  { path: 'tela-inicial-cliente', component: TelaInicialClienteComponent, canActivate: [AuthGuard] },
   { path: 'abrirconta', component: FormAbrirContaComponent },
   { path: 'login/cliente', component: LoginClienteComponent},
   { path: 'login/gerente', component: LoginGerenteComponent },
   
   {path: 'clientes', component: GerenteComponent}, // tabela crud na tela inicial após autenticação do gerente
-{path: 'clientes/novo', component: ClienteNovoComponent}, // button acima da tabela CREATE
-{path: 'clientes/alterar/:id', component: ClienteAlteracaoComponent}, // ícone do lápis UPDATE
-{path: 'clientes/conta/:id', component: ContaComponent}, // icone da lupa ou olho para exibir detalhes da conta do respectivo cliente na tabela READ
-{path: 'clientes/conta/extrato/:id', component: ExtratoComponent}, // ícone extrato para consultar o extrato relacionado ao cliente READ 
+  {path: 'clientes/novo', component: ClienteNovoComponent}, // button acima da tabela CREATE
+  {path: 'clientes/alterar/:id', component: ClienteAlteracaoComponent}, // ícone do lápis UPDATE
+  {path: 'clientes/conta/:id', component: ContaComponent}, // icone da lupa ou olho para exibir detalhes da conta do respectivo cliente na tabela READ
+  {path: 'clientes/conta/extrato/:id', component: ExtratoComponent}, // ícone extrato para consultar o extrato relacionado ao cliente READ 
   
   { path: 'saque', component: SaqueComponent, canActivate: [AuthGuard] },
   { path: 'pagamento', component: PagamentoComponent, canActivate: [AuthGuard] },
