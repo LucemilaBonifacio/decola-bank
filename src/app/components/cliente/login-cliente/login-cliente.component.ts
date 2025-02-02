@@ -12,6 +12,7 @@ import { ClienteService } from '../../../services/clientes.service';
   templateUrl: './login-cliente.component.html',
   styleUrls: ['./login-cliente.component.css']
 })
+
 export class LoginClienteComponent {
   conta: Conta;
   senha: string = '';
@@ -39,14 +40,17 @@ export class LoginClienteComponent {
   }
 
   obterConta(numConta: string): void {
+    
     this.clienteService.obterConta(numConta).subscribe(
       (conta: Conta) => {
         this.conta = conta;
         console.log('Dados da Conta:', this.conta);
+        sessionStorage.setItem('contaCliente', JSON.stringify(this.conta));
       },
       (error) => {
         console.error('Erro ao obter conta:', error);
       }
     );
+   
   }
 }
