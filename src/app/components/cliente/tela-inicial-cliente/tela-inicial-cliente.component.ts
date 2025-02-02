@@ -27,9 +27,4 @@ export class TelaInicialClienteComponent implements OnInit {
       this.saldo = this.conta.saldo;
     }
   }
-
-  logout(): void {
-    this.authService.logout();
-    this.router.navigate(['/login/cliente']);
-   }
 }

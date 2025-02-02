@@ -11,7 +11,7 @@ export class GerenteService {
   constructor(private http: HttpClient) {}
 
  
-  baseUrl: string = "http://localhost:8081/gerente";  
+  baseUrl: string = "http://localhost:8080/gerente";  
 
   
   public getClientes(): Observable<Cliente[]> {

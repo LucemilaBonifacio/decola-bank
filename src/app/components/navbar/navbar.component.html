@@ -5,7 +5,7 @@
         <img ngSrc="assets/logo.png" width="40" height="38" alt="Logo">
         DecolaBank
       </a>
-      <div class="dropdown">
+      <div *ngIf="!isLoggedIn" class="dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           Acessar sua conta
         </a>
@@ -13,6 +13,9 @@
           <li><a class="dropdown-item" routerLink="/login/cliente">Já sou cliente</a></li>
           <li><a class="dropdown-item" routerLink="/login/gerente">Gerente DecolaBank</a></li>
         </ul>
+      </div>
+      <div *ngIf="isLoggedIn">
+        <i class="bi bi-box-arrow-right custom-icon"(click)="logout()"></i>
       </div>
     </div>
   </nav>
