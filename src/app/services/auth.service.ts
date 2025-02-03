@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Conta } from '../classes/conta';
 
 @Injectable({
@@ -6,11 +7,13 @@ import { Conta } from '../classes/conta';
 })
 export class AuthService {
 
+
   private contaKey = 'conta'; // Chave usada para armazenar os dados no localStorage
 
   constructor() { }
 
   // Método para recuperar a conta do localStorage
+
   getConta(): Conta | null {
     const contaJson = localStorage.getItem(this.contaKey);
     if (contaJson) {
@@ -40,5 +43,6 @@ export class AuthService {
     } catch (error) {
       console.error('Erro ao remover dados do localStorage', error);
     }
+
   }
 }

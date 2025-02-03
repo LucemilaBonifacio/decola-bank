@@ -8,7 +8,7 @@ import { Conta } from '../classes/conta';
   providedIn: 'root'
 })
 export class ClienteService {
-  private baseUrl: string = "http://localhost:8081/cliente";
+  private baseUrl: string = "http://localhost:8080/cliente";
 
   constructor(private http: HttpClient) { }
 

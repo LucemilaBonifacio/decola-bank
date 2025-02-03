@@ -24,7 +24,10 @@
   justify-content: space-between; /* Espaçamento entre logo e dropdown */
   align-items: center; /* Alinha verticalmente os itens */
 }
-  
+.custom-icon{
+  font-size: 2rem;
+  color: #FFFFFF;
+}
 /* Responsividade para telas menores */
 @media (max-width: 768px) {
   .custom-navbar .navbar-brand {
