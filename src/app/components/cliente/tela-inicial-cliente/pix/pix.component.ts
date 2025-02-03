@@ -12,6 +12,7 @@ import { SaldoService } from '../../../../services/saldo.service';
 })
 export class PixComponent implements OnInit {
   saldoCliente: number = 0; 
+  chavePix: string = '';
   valorPix: number = 0;
   selectedOption: string = '';
   mensagemErro: string = '';
@@ -19,7 +20,14 @@ export class PixComponent implements OnInit {
   constructor(private router: Router, private saldoService: SaldoService) {}
 
   ngOnInit(): void {
-    this.saldoCliente = this.saldoService.getSaldo(); 
+    this.saldoService.getSaldo(1).subscribe(
+      (data: number) => {
+        this.saldoCliente = data;
+      },
+      (error) => {
+        console.error('Erro ao buscar saldo', error);
+      }
+    );
   }
 
   realizarPix() {
@@ -30,8 +38,15 @@ export class PixComponent implements OnInit {
     } else {
       this.mensagemErro = '';
       this.saldoService.atualizarSaldo(-this.valorPix);
-      this.saldoCliente = this.saldoService.getSaldo(); 
-      this.router.navigate(['/tela-inicial-cliente']);
+      this.saldoService.getSaldo(1).subscribe(
+        (data: number) => {
+          this.saldoCliente = data;
+          this.router.navigate(['/tela-inicial-cliente']);
+        },
+        (error) => {
+          console.error('Erro ao atualizar saldo', error);
+        }
+      );
     }
   }
 }

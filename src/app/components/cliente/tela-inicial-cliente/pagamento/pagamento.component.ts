@@ -1,9 +1,9 @@
+
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SaldoService } from '../../../../services/saldo.service';
-
 
 @Component({
   selector: 'app-pagamento',
@@ -12,7 +12,7 @@ import { SaldoService } from '../../../../services/saldo.service';
   styleUrls: ['./pagamento.component.css']
 })
 export class PagamentoComponent implements OnInit {
-  saldoCliente: number = 0; // Adicionando a propriedade saldoCliente
+  saldoCliente: number = 0;
   valorPagamento: number = 0;
   codigoPagamento: string = '';
   dataVencimento: string = '';
@@ -22,7 +22,14 @@ export class PagamentoComponent implements OnInit {
   constructor(private router: Router, private saldoService: SaldoService) {}
 
   ngOnInit(): void {
-    this.saldoCliente = this.saldoService.getSaldo(); // Inicializando saldoCliente
+    this.saldoService.getSaldo(1).subscribe(
+      (data: number) => {
+        this.saldoCliente = data;
+      },
+      (error) => {
+        console.error('Erro ao buscar saldo', error);
+      }
+    );
   }
 
   verificarSaldo() {
@@ -31,7 +38,15 @@ export class PagamentoComponent implements OnInit {
     } else {
       this.mensagemErro = '';
       this.saldoService.atualizarSaldo(-this.valorPagamento);
-      this.router.navigate(['/tela-inicial-cliente']);
+      this.saldoService.getSaldo(1).subscribe(
+        (data: number) => {
+          this.saldoCliente = data;
+          this.router.navigate(['/tela-inicial-cliente']);
+        },
+        (error) => {
+          console.error('Erro ao atualizar saldo', error);
+        }
+      );
     }
   }
 }

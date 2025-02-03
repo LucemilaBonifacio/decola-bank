@@ -13,7 +13,6 @@ export class GerenteService {
 
   baseUrl: string = "http://localhost:8081/gerente";
 
-
   public getClientes(): Observable<Cliente[]> {
     const url: string = "listar/clientes";
     return this.http.get<Cliente[]>(`${this.baseUrl}/${url}`);

@@ -12,6 +12,6 @@ export class GerenteComponent {
   constructor(private router: Router) {}
 
   novo(): void {
-    this.router.navigate(['/clientes/novo/:idAdmin']);
+    this.router.navigate(['/clientes/novo/:id']);
   }
 }
