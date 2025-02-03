@@ -6,6 +6,7 @@ import { TransacaoService } from '../../../../services/transacao.service';
 import { AuthService } from '../../../../services/auth.service';
 import { ClienteService } from '../../../../services/clientes.service';
 import { Pix } from '../../../../classes/pix';
+import { Conta } from '../../../../classes/conta';
 
 @Component({
   selector: 'app-pix',
@@ -14,15 +15,15 @@ import { Pix } from '../../../../classes/pix';
   styleUrls: ['./pix.component.css']
 })
 export class PixComponent implements OnInit {
-  saldoCliente: number = 0; 
   chavePix: string = '';
   valorPix: number = 0;
   selectedOption: string = '';
   mensagemErro: string = '';
-  conta: Pix = new Pix();
-  numConta: string | null = '';
-
+  conta: Conta = new Conta();
+  numConta : string = localStorage.getItem('numConta')?? '';
   mensagemSucesso: string = '';
+
+  pix : Pix = new Pix();
 
   constructor(
     private router: Router, 
@@ -32,31 +33,35 @@ export class PixComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.numConta = this.authService.getNumConta();
-    if (this.numConta) {
-      this.clienteService.obterConta(this.numConta).subscribe(
-        (conta: Pix) => {
-          this.conta = conta;
-          this.saldoCliente = conta.saldo;
-        },
-        (error) => {
-          console.error('Erro ao obter conta', error);
-        }
-      );
-    } else {
-      this.mensagemErro = 'Erro: Conta não encontrada.';
-    }
+
+    this.obterConta(this.numConta);
+    
+  }
+
+  obterConta(numConta: string): void {
+    this.clienteService.obterConta(numConta).subscribe(
+      (conta: Conta) => {
+        this.conta = conta;
+        this.authService.setNumConta(numConta);
+        console.log('Dados da Conta:', this.conta);
+        console.log('numConta:', this.numConta)
+      },
+      (error) => {
+        console.error('Erro ao obter conta:', error);
+      }
+    ); 
   }
 
    realizarPix() {
+    this.pix = new Pix(this.chavePix,this.valorPix);
+
     if (this.valorPix <= 0) {
       this.mensagemErro = 'Erro: O valor do Pix deve ser maior que zero.';
-    } else if (this.valorPix > this.saldoCliente) {
+    } else if (this.valorPix > this.valorPix) {
       this.mensagemErro = 'Erro: O valor do Pix é maior que o saldo disponível.';
     } else if (this.conta.id === undefined) {
       this.mensagemErro = 'Erro: ID da conta inválido.';
     } else {
-      this.mensagemErro = '';
       this.transacaoService.realizarPixApi(this.conta.id, this.chavePix, this.valorPix).subscribe(
         (resposta: string) => {
           this.mensagemSucesso = resposta; // Retorna mensagem da API

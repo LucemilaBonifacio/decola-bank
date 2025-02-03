@@ -8,7 +8,4 @@ export class Cliente {
         public id?: number) 
     {}
     
-    public mostrar() : string{
-        return `Id: ${this.id} \nCPF: ${this.cpf}\nNome: ${this.nome}\nEmail: ${this.email}\nTelefone: ${this.telefone}\nStatus: ${this.statusCliente}`;
-    }
 }

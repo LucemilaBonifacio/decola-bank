@@ -11,9 +11,4 @@ export class Conta {
       public id?: number,
     ) {}
   
-    public mostrar(): string {
-      return `Agencia: ${this.agencia} \nNumConta: ${this.numConta}\nSaldo: ${this.saldo.toFixed(2)}\nDataCriacao: ${this.dataCriacao.toLocaleDateString()}\nTipoConta: ${this.tipoConta}\nIdCliente: ${this.idCliente}\nNomeCliente: ${this.nomeCliente}\nCpfCliente: ${this.cpfCliente}\nId: ${this.id}`;
-
-     
-    }
   }
