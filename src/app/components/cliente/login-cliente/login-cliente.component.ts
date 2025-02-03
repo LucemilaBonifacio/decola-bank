@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ClienteService } from '../../../services/clientes.service';
 import { AuthService } from '../../../services/auth.service';
-import { Conta } from '../../../classes/conta';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
