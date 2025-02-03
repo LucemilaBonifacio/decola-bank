@@ -4,12 +4,12 @@ export class Conta {
         public agencia: string = '',
 	    public numConta: string = '' ,
 	    public saldo: number,
-	    public dataCriacao: Date = new Date,
+	    public dataCriacao: Date = new Date(),
 	    public tipoConta: number ,
 	    public idCliente: number,
 	    public nomeCliente: string = '' ,
 	    public cpfCliente: string = '',
-        public id: number) 
+        public id?: number) 
     {}
     
     public mostrar() : string{

@@ -20,6 +20,36 @@
     width: 100%;
   }
   
+  .success-message {
+    color: green;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .btn-voltar {
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .btn-voltar:hover {
+    color: #cc0000;
+  }
+  
   .saque-title {
     font-size: 30px;
     text-align: left;
