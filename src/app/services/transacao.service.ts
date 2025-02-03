@@ -20,6 +20,15 @@ export class TransacaoService {
     const url = `${this.baseUrl}/saque/${id}`;
     return this.http.post<string>(url, { valor }, { responseType: 'text' as 'json' });
   }
+
+
+  public realizarDepositoApi(valor: number, id: number): Observable<string> {
+    if (!id) {
+      return throwError(() => new Error("Usuário não logado."));
+    }
+    const url = `${this.baseUrl}/deposito/${id}`;
+    return this.http.post<string>(url, { valor }, { responseType: 'text' as 'json' });
+  }
 }
   
 

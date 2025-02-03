@@ -13,18 +13,15 @@ import { ClienteService } from '../../../services/clientes.service';
   styleUrls: ['./tela-inicial-cliente.component.css']
 })
 export class TelaInicialClienteComponent implements OnInit {
-  conta: Conta = new Conta('', '', 0, new Date(), 0, 0, '', '', 0);
+  conta: Conta = new Conta('', '', 0, new Date(), 0, 0, '', '');
   saldo: number = 0;
   nomeCliente: string = '';
   numConta : string = localStorage.getItem('numConta')?? '';
-  
 
   constructor(private authService: AuthService, private router: Router, private clienteService : ClienteService) {}
 
   ngOnInit(): void {
-
     this.obterConta(this.numConta);
-    
 }
 
 obterConta(numConta: string): void {
