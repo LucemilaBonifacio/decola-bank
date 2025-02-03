@@ -8,7 +8,6 @@
       <select class="dropdown" [(ngModel)]="selectedOption" name="options" required>
         <option value="" disabled selected>Tipo da chave</option>
         <option value="cpf">Cpf</option>
-        <option value="chaveAleatoria">Chave Aleatória</option>
         <option value="email">Email</option>
         <option value="telefone">Telefone</option>
       </select>
@@ -22,8 +21,13 @@
     <div class="button-container">
       <button id="btn-02" type="button" (click)="realizarPix()">Realizar Pix</button>
     </div>
+
     <div *ngIf="mensagemErro" class="error-message">
       {{ mensagemErro }}
+    </div>
+
+    <div *ngIf="mensagemSucesso" class="success-message">
+      {{ mensagemSucesso }}
     </div>
   </article>
 </section>

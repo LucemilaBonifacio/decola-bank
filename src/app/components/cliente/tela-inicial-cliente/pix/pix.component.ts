@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { TransacaoService } from '../../../../services/transacao.service';
 import { AuthService } from '../../../../services/auth.service';
 import { ClienteService } from '../../../../services/clientes.service';
-import { Conta } from '../../../../classes/conta';
+import { Pix } from '../../../../classes/pix';
 
 @Component({
   selector: 'app-pix',
@@ -19,8 +19,10 @@ export class PixComponent implements OnInit {
   valorPix: number = 0;
   selectedOption: string = '';
   mensagemErro: string = '';
-  conta: Conta = new Conta();
+  conta: Pix = new Pix();
   numConta: string | null = '';
+
+  mensagemSucesso: string = '';
 
   constructor(
     private router: Router, 
@@ -33,7 +35,7 @@ export class PixComponent implements OnInit {
     this.numConta = this.authService.getNumConta();
     if (this.numConta) {
       this.clienteService.obterConta(this.numConta).subscribe(
-        (conta: Conta) => {
+        (conta: Pix) => {
           this.conta = conta;
           this.saldoCliente = conta.saldo;
         },
@@ -46,7 +48,7 @@ export class PixComponent implements OnInit {
     }
   }
 
-  realizarPix() {
+   realizarPix() {
     if (this.valorPix <= 0) {
       this.mensagemErro = 'Erro: O valor do Pix deve ser maior que zero.';
     } else if (this.valorPix > this.saldoCliente) {
@@ -57,8 +59,10 @@ export class PixComponent implements OnInit {
       this.mensagemErro = '';
       this.transacaoService.realizarPixApi(this.conta.id, this.chavePix, this.valorPix).subscribe(
         (resposta: string) => {
-          this.saldoCliente -= this.valorPix;
-          this.router.navigate(['/tela-inicial-cliente']);
+          this.mensagemSucesso = resposta; // Retorna mensagem da API
+          setTimeout(() => {
+            this.router.navigate(['/tela-inicial-cliente']); // Volta para tela inicial
+          }, 3000); // Espera 3 segundos antes de voltar
         },
         (error) => {
           console.error('Erro ao processar Pix', error);
