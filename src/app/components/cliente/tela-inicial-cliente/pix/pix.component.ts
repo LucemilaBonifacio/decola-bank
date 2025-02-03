@@ -2,7 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SaldoService } from '../../../../services/saldo.service';
+import { TransacaoService } from '../../../../services/transacao.service';
+import { AuthService } from '../../../../services/auth.service';
+import { ClienteService } from '../../../../services/clientes.service';
+import { Pix } from '../../../../classes/pix';
 
 @Component({
   selector: 'app-pix',
@@ -16,35 +19,54 @@ export class PixComponent implements OnInit {
   valorPix: number = 0;
   selectedOption: string = '';
   mensagemErro: string = '';
+  conta: Pix = new Pix();
+  numConta: string | null = '';
 
-  constructor(private router: Router, private saldoService: SaldoService) {}
+  mensagemSucesso: string = '';
+
+  constructor(
+    private router: Router, 
+    private transacaoService: TransacaoService,
+    private authService: AuthService,
+    private clienteService: ClienteService
+  ) {}
 
   ngOnInit(): void {
-    this.saldoService.getSaldo(1).subscribe(
-      (data: number) => {
-        this.saldoCliente = data;
-      },
-      (error) => {
-        console.error('Erro ao buscar saldo', error);
-      }
-    );
+    this.numConta = this.authService.getNumConta();
+    if (this.numConta) {
+      this.clienteService.obterConta(this.numConta).subscribe(
+        (conta: Pix) => {
+          this.conta = conta;
+          this.saldoCliente = conta.saldo;
+        },
+        (error) => {
+          console.error('Erro ao obter conta', error);
+        }
+      );
+    } else {
+      this.mensagemErro = 'Erro: Conta não encontrada.';
+    }
   }
 
-  realizarPix() {
+   realizarPix() {
     if (this.valorPix <= 0) {
       this.mensagemErro = 'Erro: O valor do Pix deve ser maior que zero.';
     } else if (this.valorPix > this.saldoCliente) {
       this.mensagemErro = 'Erro: O valor do Pix é maior que o saldo disponível.';
+    } else if (this.conta.id === undefined) {
+      this.mensagemErro = 'Erro: ID da conta inválido.';
     } else {
       this.mensagemErro = '';
-      this.saldoService.atualizarSaldo(-this.valorPix);
-      this.saldoService.getSaldo(1).subscribe(
-        (data: number) => {
-          this.saldoCliente = data;
-          this.router.navigate(['/tela-inicial-cliente']);
+      this.transacaoService.realizarPixApi(this.conta.id, this.chavePix, this.valorPix).subscribe(
+        (resposta: string) => {
+          this.mensagemSucesso = resposta; // Retorna mensagem da API
+          setTimeout(() => {
+            this.router.navigate(['/tela-inicial-cliente']); // Volta para tela inicial
+          }, 3000); // Espera 3 segundos antes de voltar
         },
         (error) => {
-          console.error('Erro ao atualizar saldo', error);
+          console.error('Erro ao processar Pix', error);
+          this.mensagemErro = 'Erro ao processar o Pix.';
         }
       );
     }
