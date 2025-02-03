@@ -6,7 +6,8 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  imports: [NgOptimizedImage, RouterLink, CommonModule],
+  standalone: true,
+  imports: [CommonModule, RouterLink, NgOptimizedImage],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
