@@ -6,14 +6,19 @@ import { Conta } from '../classes/conta';
   providedIn: 'root'
 })
 export class AuthService {
-
-
   private contaKey = 'conta'; // Chave usada para armazenar os dados no localStorage
+  private loggedIn = new BehaviorSubject<boolean>(this.hasConta());
+
+  isLoggedIn = this.loggedIn.asObservable();
 
   constructor() { }
 
-  // Método para recuperar a conta do localStorage
+  // Método para verificar se há uma conta no localStorage
+  private hasConta(): boolean {
+    return !!localStorage.getItem(this.contaKey);
+  }
 
+  // Método para recuperar a conta do localStorage
   getConta(): Conta | null {
     const contaJson = localStorage.getItem(this.contaKey);
     if (contaJson) {
@@ -31,6 +36,7 @@ export class AuthService {
   setConta(conta: Conta): void {
     try {
       localStorage.setItem(this.contaKey, JSON.stringify(conta)); // Salva os dados no localStorage
+      this.loggedIn.next(true); // Atualiza o estado de autenticação
     } catch (error) {
       console.error('Erro ao salvar dados no localStorage', error);
     }
@@ -40,9 +46,9 @@ export class AuthService {
   logout(): void {
     try {
       localStorage.removeItem(this.contaKey); // Remove os dados da conta do localStorage
+      this.loggedIn.next(false); // Atualiza o estado de autenticação
     } catch (error) {
       console.error('Erro ao remover dados do localStorage', error);
     }
-
   }
 }
