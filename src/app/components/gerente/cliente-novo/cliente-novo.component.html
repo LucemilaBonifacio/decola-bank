@@ -1,7 +1,9 @@
 <div class="container mt-3">
-  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
-    <div class="card shadow p-4">
-      <h3 class="mb-4">Cadastrar Conta</h3>
+  <form #form="ngForm" (ngSubmit)="concluir(form)">
+    <div class="card shadow p-4 mb-5">
+      <h3 class="mb-4">Cadastrar Cliente e Conta</h3>
+
+      <!-- Dados do Cliente -->
       <div class="row mb-2">
         <div class="col-md-6">
           <label for="cpf" class="form-label">CPF</label>
@@ -10,19 +12,18 @@
             type="text"
             class="form-control"
             name="cpf"
-            [(ngModel)]="cpf"
+            [(ngModel)]="cliente.cpf"
             #cpfModel="ngModel"
             required
             pattern="^\d{11}$"
-            placeholder="Digite seu CPF"
+            placeholder="Digite o CPF"
           />
           <div *ngIf="cpfModel.touched && cpfModel.invalid" class="text-danger">
             <div *ngIf="cpfModel.errors?.['required']">O CPF é obrigatório.</div>
-            <div *ngIf="cpfModel.errors?.['pattern']">
-              O CPF deve conter 11 dígitos.
-            </div>
+            <div *ngIf="cpfModel.errors?.['pattern']">O CPF deve conter 11 dígitos.</div>
           </div>
         </div>
+
         <div class="col-md-6">
           <label for="email" class="form-label">E-mail</label>
           <input
@@ -30,10 +31,10 @@
             type="email"
             class="form-control"
             name="email"
-            [(ngModel)]="email"
+            [(ngModel)]="cliente.email"
             #emailModel="ngModel"
             required
-            placeholder="Digite seu e-mail"
+            placeholder="Digite o e-mail"
           />
           <div *ngIf="emailModel.touched && emailModel.invalid" class="text-danger">
             <div *ngIf="emailModel.errors?.['required']">O e-mail é obrigatório.</div>
@@ -41,22 +42,22 @@
           </div>
         </div>
       </div>
+
+      <!-- Nome Completo -->
       <div class="mb-2">
-        <label for="nomeCompleto" class="form-label">Nome Completo</label>
+        <label for="nome" class="form-label">Nome Completo</label>
         <input
-          id="nomeCompleto"
+          id="nome"
           type="text"
           class="form-control"
-          name="nomeCompleto"
-          [(ngModel)]="nomeCompleto"
-          #nomeCompletoModel="ngModel"
+          name="nome"
+          [(ngModel)]="cliente.nome"
           required
-          placeholder="Digite seu nome completo"
+          placeholder="Digite o nome completo"
         />
-        <div *ngIf="nomeCompletoModel.touched && nomeCompletoModel.invalid" class="text-danger">
-          O nome completo é obrigatório.
-        </div>
       </div>
+
+      
 
       <h5 class="mt-2 mb-2">Endereço</h5>
       <div class="row mb-2">
@@ -67,15 +68,12 @@
             type="text"
             class="form-control"
             name="cep"
-            [(ngModel)]="cep"
-            #cepModel="ngModel"
+            [(ngModel)]="cliente.endereco.cep"
             required
             placeholder="Digite o CEP"
           />
-          <div *ngIf="cepModel.touched && cepModel.invalid" class="text-danger">
-            O CEP é obrigatório.
-          </div>
         </div>
+
         <div class="col-md-6">
           <label for="endereco" class="form-label">Endereço</label>
           <input
@@ -83,7 +81,7 @@
             type="text"
             class="form-control"
             name="endereco"
-            [(ngModel)]="endereco"
+            [(ngModel)]="cliente.endereco.endereco"
             required
             placeholder="Digite o endereço"
           />
@@ -98,7 +96,7 @@
             type="text"
             class="form-control"
             name="numero"
-            [(ngModel)]="numero"
+            [(ngModel)]="cliente.endereco.numero"
             placeholder="Nº"
           />
         </div>
@@ -109,7 +107,7 @@
             type="text"
             class="form-control"
             name="complemento"
-            [(ngModel)]="complemento"
+            [(ngModel)]="cliente.endereco.complemento"
             placeholder="Complemento"
           />
         </div>
@@ -120,7 +118,7 @@
             type="text"
             class="form-control"
             name="bairro"
-            [(ngModel)]="bairro"
+            [(ngModel)]="cliente.endereco.bairro"
             placeholder="Digite o bairro"
           />
         </div>
@@ -131,12 +129,13 @@
             type="text"
             class="form-control"
             name="cidade"
-            [(ngModel)]="cidade"
+            [(ngModel)]="cliente.endereco.cidade"
             placeholder="Digite a cidade"
           />
         </div>
       </div>
 
+      <!-- Dados da Conta -->
       <h4 class="mt-4 mb-2">Dados da Conta</h4>
       <div class="row mb-2">
         <div class="col-md-4">
@@ -145,13 +144,14 @@
             id="tipoConta"
             class="form-select"
             name="tipoConta"
-            [(ngModel)]="tipoConta"
+            [(ngModel)]="conta.tipoConta"
           >
             <option value="" disabled selected>Selecione</option>
             <option value="1">Simples</option>
             <option value="2">Especial</option>
           </select>
         </div>
+
         <div class="col-md-4">
           <label for="agencia" class="form-label">Agência</label>
           <input
@@ -159,27 +159,28 @@
             type="text"
             class="form-control"
             name="agencia"
-            [(ngModel)]="agencia"
+            [(ngModel)]="conta.agencia"
             placeholder="Digite a agência"
           />
         </div>
+
         <div class="col-md-4">
-          <label for="senhaInicial" class="form-label">Senha Inicial</label>
+          <label for="senha" class="form-label">Senha Inicial</label>
           <input
-            id="senhaInicial"
+            id="senha"
             type="password"
             class="form-control"
-            name="senhaInicial"
-            [(ngModel)]="senhaInicial"
+            name="senha"
+            [(ngModel)]="cliente.senha"
             placeholder="Digite a senha inicial"
           />
         </div>
       </div>
 
+      <!-- Botões -->
       <div class="d-flex justify-content-between mt-3">
         <button type="button" class="btn btn-outline-danger" (click)="cancelar()">Cancelar</button>
-        <button type="submit" class="btn btn-success"> Criar Conta
-        </button>
+        <button type="submit" class="btn btn-success">Criar Conta</button>
       </div>
     </div>
   </form>

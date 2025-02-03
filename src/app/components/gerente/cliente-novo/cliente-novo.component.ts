@@ -1,59 +1,75 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { GerenteService } from '../../../services/gerente.service';
+import { ContaService } from '../../../services/conta.service';
+import { Cliente } from '../../../classes/cliente';
+import { Conta } from '../../../classes/conta';
+import { CommonModule } from '@angular/common';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-cliente-novo',
   imports: [CommonModule, FormsModule],
   templateUrl: './cliente-novo.component.html',
-  styleUrls: ['./cliente-novo.component.css'] // Corrigido de "styleUrl" para "styleUrls"
+  styleUrls: ['./cliente-novo.component.css']
 })
 export class ClienteNovoComponent {
-  // Dados do cliente
-  cpf: string = '';
-  nomeCompleto: string = '';
-  email: string = '';
-  
-  // Dados do endereço
-  cep: string = '';
-  endereco: string = '';
-  numero: string = '';
-  complemento: string = '';
-  bairro: string = '';
-  cidade: string = '';
+  cliente: Cliente = new Cliente();
+  conta: Conta = new Conta();
+  idAdmin!: number; // Id do gerente (admin), que pode vir de um serviço de autenticação.
 
-  // Dados da conta
-  tipoConta: string = '';
-  agencia: string = '';
-  senhaInicial: string = '';
+  constructor(
+    private gerenteService: GerenteService,
+    private contaService: ContaService,
+    private router: Router
+  ) {}
 
-  // Outros
-  politica: boolean = false;
-  mostrarPopup: boolean = false;
-
-  constructor(private router: Router) {}
-
-  // Método para fechar o formulário
-  cancelar() {
-    this.router.navigate(['/clientes']);
+  // Função para gerar número de conta
+  gerarNumeroConta(): string {
+    const numero = Math.floor(Math.random() * 1000000000).toString().padStart(10, '0');
+    return numero;
   }
 
-  // Método chamado ao submeter o formulário
-  onSubmit(form: any) {
-    if (form.valid) {
-      this.mostrarPopup = true;
-      console.log('Formulário enviado com sucesso:', form.value);
-    } else {
-      console.log('Formulário inválido!');
+  concluir(form: NgForm) {
+    if (form.invalid) {
+      console.error('Formulário inválido. Preencha todos os campos corretamente.');
+      return;
     }
+
+    // 1. Criação do cliente
+    this.gerenteService.postCliente(this.cliente, this.idAdmin).subscribe({
+      next: (clienteCriado) => {
+        // 2. Criar a conta associada ao cliente
+        this.conta.idCliente = clienteCriado.id;
+        this.conta.nomeCliente = clienteCriado.nome;
+        this.conta.cpfCliente = clienteCriado.cpf;
+        this.conta.numConta = this.gerarNumeroConta();  // Gerando número da conta
+        this.conta.saldo = 0;  // Inicializando saldo
+        this.conta.dataCriacao = new Date();
+        this.conta.tipoConta = 1;  // Tipo de conta (ex: 1 para Simples)
+  
+        // 3. Criar a conta no backend
+        this.contaService.criarConta(this.conta).subscribe({
+          next: () => {
+            // Redireciona após a criação da conta com sucesso
+            this.router.navigate(['/clientes']);
+          },
+          error: (err) => {
+            console.error('Erro ao criar conta:', err);
+            // Exibir mensagem de erro ao usuário, se necessário
+          }
+        });
+      },
+      error: (err) => {
+        console.error('Erro ao criar cliente:', err);
+        // Exibir mensagem de erro ao usuário, se necessário
+      }
+    });
   }
-  getEnderecoCompleto(): string {
-    // Concatenar os dados do endereço em um único formato
-    return `${this.endereco}, ${this.numero || 'S/N'}${this.complemento ? `, ${this.complemento}` : ''}, ${this.bairro}, ${this.cidade}, ${this.cep}`;
-  }
-  // Método para concluir o processo
-  concluir() {
-    this.router.navigate(['/clientes']);
+  
+  
+  // Função de cancelamento
+  cancelar() {
+    this.router.navigate(['/clientes']);  // Ou outra página de sua escolha
   }
 }
