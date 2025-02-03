@@ -31,9 +31,4 @@ export class AuthService {
     localStorage.removeItem(this.chaveConta);
     this.loggedIn.next(false);
   }
-
-  getAdminId(): number | null {
-    const adminId = localStorage.getItem('adminId');
-    return adminId ? parseInt(adminId, 10) : null;
-  }
 }
