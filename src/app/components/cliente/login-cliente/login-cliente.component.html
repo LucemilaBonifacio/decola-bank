@@ -6,7 +6,7 @@
         
         <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
             <div class="value0">
-                <input type="number" class="input0" placeholder="Agência" name="agencia" [(ngModel)]="conta.agencia">
+                <input type="number" class="input0" placeholder="Agência" name="agencia">
                 <div *ngIf="loginForm.controls['agencia']?.invalid && loginForm.controls['agencia']?.touched">
                     <!-- <small *ngIf="loginForm.controls['agencia']?.errors?.['required']">Agência é obrigatória.</small>
                     <small *ngIf="loginForm.controls['agencia']?.errors?.['minlength']">Agência deve ter 4 dígitos.</small>
