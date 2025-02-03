@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { TransacaoService } from '../../../../services/transacao.service';
 import { AuthService } from '../../../../services/auth.service';
 import { Conta } from '../../../../classes/conta';
+import { ClienteService } from '../../../../services/clientes.service';
 
 @Component({
   selector: 'app-saque',
@@ -14,30 +15,42 @@ import { Conta } from '../../../../classes/conta';
   styleUrls: ['./saque.component.css']
 })
 export class SaqueComponent implements OnInit {
-  saldo: number = 0; 
+
+
   valor: number = 0;
   mensagemErro: string = '';
   mensagemSucesso: string = ''; 
-  conta: Conta | null = null;
+  conta: Conta = new Conta();
+  numConta : string = localStorage.getItem('numConta')?? '';
 
   constructor(
     private router: Router, 
     private transacaoService: TransacaoService,
-    private authService: AuthService
+    private authService: AuthService,
+    private clienteService : ClienteService
   ) {}
 
   ngOnInit(): void {
-    this.carregarConta();
+
+    this.obterConta(this.numConta);
+    
   }
 
-  carregarConta(): void {
-    this.conta = this.authService.getConta();
-    if (this.conta) {
-      this.saldo = this.conta.saldo ?? 0; // Garante que saldo seja sempre um número válido
-    } else {
-      console.error('Erro: Conta não encontrada.');
-    }
+  obterConta(numConta: string): void {
+    this.clienteService.obterConta(numConta).subscribe(
+      (conta: Conta) => {
+        this.conta = conta;
+        this.authService.setNumConta(numConta);
+        console.log('Dados da Conta:', this.conta);
+        console.log('numConta:', this.numConta)
+      },
+      (error) => {
+        console.error('Erro ao obter conta:', error);
+      }
+    ); 
   }
+
+  
 
   verificarSaldo(): void {
     if (!this.conta) {
@@ -50,7 +63,7 @@ export class SaqueComponent implements OnInit {
       return;
     }
 
-    if (this.valor > this.saldo) {
+    if (this.valor > this.conta.saldo) {
       this.mensagemErro = 'Erro: O valor digitado é maior que o saldo disponível.';
       return;
     }
@@ -67,22 +80,14 @@ export class SaqueComponent implements OnInit {
     this.transacaoService.realizarSaqueApi(this.valor, contaId).subscribe(
       (resposta: string) => {
         this.mensagemSucesso = resposta; // Mensagem de sucesso retornada da API
-    
-        // Recuperar os dados da conta e atualizar o saldo
-        const contaAtualizada = this.authService.getConta(); // Garantir que a conta no localStorage esteja atualizada
-        if (contaAtualizada) {
-          contaAtualizada.saldo = contaAtualizada.saldo ?? 0; // Garantir que o saldo seja válido
-          this.authService.setConta(contaAtualizada); // Atualiza os dados no localStorage com a conta atualizada
-          this.saldo = contaAtualizada.saldo; // Atualiza a variável de saldo no componente para refletir a mudança
-        }
-    
         setTimeout(() => {
           this.router.navigate(['/tela-inicial-cliente']); // Volta para tela inicial
-        }, 2000); // Espera 2 segundos antes de voltar
+        }, 3000); // Espera 2 segundos antes de voltar
       },
       (error) => {
         console.error('Erro ao processar saque', error);
         this.mensagemErro = 'Erro ao processar o saque.';
+        
       }
     );
     
