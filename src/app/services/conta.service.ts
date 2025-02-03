@@ -8,13 +8,13 @@ import { Conta } from '../classes/conta';
   providedIn: 'root'
 })
 export class ContaService {
-  private baseUrl = 'http://localhost:8080/contas'; // Ajuste conforme seu backend
+  private baseUrl = 'http://localhost:8080/contas'; 
 
   constructor(private http: HttpClient) { }
 
   // Método para criar a conta
   criarConta(conta: Conta): Observable<Conta> {
-    const url = `${this.baseUrl}/contas`; // Ajuste com o endpoint correto para criação de conta
+    const url = `${this.baseUrl}/contas`; 
     return this.http.post<Conta>(url, conta);
   }
 }

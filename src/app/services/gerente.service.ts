@@ -24,8 +24,8 @@ export class GerenteService {
   }
 
   
-  public postCliente(cliente: Cliente, idAdmin: number): Observable<any> {
-  const url = `${this.baseUrl}/novo/clientes/${idAdmin}`; // ID do gerente é incluído na URL
+  public postCliente(cliente: Cliente, id: number): Observable<any> {
+  const url = `${this.baseUrl}/novo/clientes/${id}`; 
   const dados = {
     cpf: cliente.cpf,
     nome: cliente.nome,

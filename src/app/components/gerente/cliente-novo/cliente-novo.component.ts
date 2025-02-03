@@ -17,7 +17,7 @@ export class ClienteNovoComponent {
 
   cliente: Cliente = new Cliente();
   conta: Conta = new Conta();
-  idAdmin!: number; 
+  id!: number; 
 
 
   constructor(
@@ -34,13 +34,22 @@ export class ClienteNovoComponent {
 
   }
 
+  
+
   concluir(form: NgForm) {
     if (form.invalid) {
       console.error('Formulário inválido. Preencha todos os campos corretamente.');
       return;
     }
+    
+    console.log('ID:', this.id);
+    if (this.id === undefined) {
+    console.error('ID está indefinido!');
+    return; // ou retornar uma mensagem de erro.
+    }
 
-    this.gerenteService.postCliente(this.cliente, this.idAdmin).subscribe({
+
+    this.gerenteService.postCliente(this.cliente, this.id).subscribe({
       next: (clienteCriado) => {
         this.conta.idCliente = clienteCriado.id;
         this.conta.nomeCliente = clienteCriado.nome;
