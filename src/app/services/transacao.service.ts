@@ -20,10 +20,21 @@ export class TransacaoService {
     const url = `${this.baseUrl}/saque/${id}`;
     return this.http.post<string>(url, { valor }, { responseType: 'text' as 'json' });
   }
+  
+  //Depósito
+  public realizarDepositoApi(valor: number, id: number): Observable<string> {
+    if (!id) {
+      return throwError(() => new Error("Usuário não logado."));
+    }
+    const url = `${this.baseUrl}/deposito/${id}`;
+    return this.http.post<string>(url, { valor }, { responseType: 'text' as 'json' });
+  }
+
   //Pix
   public realizarPixApi(idContaOrigem: number, chavePixDestino: string, valor: number): Observable<string> {
     const url = `${this.baseUrl}/pix/${idContaOrigem}/${chavePixDestino}`;
     return this.http.post<string>(url, { valor }, { responseType: 'text' as 'json' });
+
 }
   
 }
