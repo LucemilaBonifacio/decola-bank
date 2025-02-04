@@ -1,4 +1,4 @@
-export class pagamentoBoleto{
+export class PagamentoBoleto{
 
     constructor(
         public codBarras: string = '',
