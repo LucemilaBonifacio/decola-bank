@@ -9,6 +9,7 @@ import { Conta } from '../../../../classes/conta';
 import { PagamentoBoleto } from '../../../../classes/pagamentoBoleto';
 import { AuthService } from '../../../../services/auth.service';
 
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-pagamento',
@@ -62,17 +63,20 @@ export class PagamentoComponent implements OnInit {
 
       if (!this.conta) {
         this.mensagemErro = 'Erro: Conta não encontrada.';
+        Swal.fire('Erro', this.mensagemErro, 'error');
         return;
       }
   
       if (this.valor <= 0) {
         this.mensagemErro = 'Erro: O valor do pagamento deve ser maior que zero.';
+        Swal.fire('Erro', this.mensagemErro, 'error');
         return;
       }
   
       const contaId = this.conta.id;
       if (contaId === undefined) {
         this.mensagemErro = 'Erro: ID da conta inválido.';
+        Swal.fire('Erro', this.mensagemErro, 'error');
         return;
       }
 
@@ -80,6 +84,7 @@ export class PagamentoComponent implements OnInit {
       this.transacaoService.realizarPagamentoApi(contaId, this.pagamentoBoleto).subscribe(
         (resposta: string) => {
           this.mensagemSucesso = resposta;
+          Swal.fire('Sucesso', this.mensagemSucesso, 'success');
           console.log("Pagamento Efetuado com Sucesso") // Mensagem de sucesso retornada da API
           setTimeout(() => {
             this.router.navigate(['/tela-inicial-cliente']); // Volta para tela inicial
@@ -87,7 +92,8 @@ export class PagamentoComponent implements OnInit {
         },
         (error) => {
           console.error('Erro ao processar o pagamento', error);
-          this.mensagemErro = 'Erro ao processar o pagamento.'; 
+          this.mensagemErro = 'Erro ao processar o pagamento.';
+          Swal.fire('Erro', this.mensagemErro, 'error'); 
         }
       );
       

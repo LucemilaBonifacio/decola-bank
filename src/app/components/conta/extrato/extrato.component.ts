@@ -8,6 +8,8 @@ import { ClienteService } from '../../../services/clientes.service';
 import { Conta } from '../../../classes/conta';
 import { AuthService } from '../../../services/auth.service';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-extrato',
   imports: [CommonModule, FormsModule, RouterLink],
@@ -53,12 +55,14 @@ export class ExtratoComponent implements OnInit {
     
     if (contaId === undefined) {
       this.mensagemErro = 'Erro: ID da conta inválido.';
+      Swal.fire('Erro', this.mensagemErro, 'error');
       return;
     }
   
     const dias = this.selectedOption;
     if (isNaN(dias)) {
       this.mensagemErro = 'Selecione uma opção válida.';
+      Swal.fire('Erro', this.mensagemErro, 'error');
       return;
     }
   
@@ -68,6 +72,7 @@ export class ExtratoComponent implements OnInit {
   
         if (this.transacoes.length === 0) {
           this.mensagemErro = 'Nenhuma transação encontrada para o período selecionado.';
+          Swal.fire('Erro', this.mensagemErro, 'error');
         } else {
           this.mensagemErro = '';
   
@@ -79,6 +84,7 @@ export class ExtratoComponent implements OnInit {
       },
       error: (err) => {
         this.mensagemErro = 'Erro ao obter transações.';
+        Swal.fire('Erro', this.mensagemErro, 'error');
         console.error('Erro:', err);
       }
     });

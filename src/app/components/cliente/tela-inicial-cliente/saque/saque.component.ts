@@ -78,6 +78,7 @@ export class SaqueComponent implements OnInit {
     const contaId = this.conta.id;
     if (contaId === undefined) {
       this.mensagemErro = 'Erro: ID da conta inválido.';
+        Swal.fire('Erro', this.mensagemErro, 'error');
       return;
     }
 
