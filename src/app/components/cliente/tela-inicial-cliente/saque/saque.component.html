@@ -1,5 +1,7 @@
 <section class="card-saque-container">
-  
+  <div class="icon-container" (click)="voltar()">
+    <i class="bi bi-arrow-left-square"></i>
+  </div>    
   <form class="card-saque">
     <header class="title">
       <h1 class="saque-title">Saque</h1>
@@ -14,12 +16,5 @@
       <button id="btn-02" type="button" (click)="verificarSaldo()" [disabled]="valor <= 0">Confirmar</button>
     </div>
 
-    <div *ngIf="mensagemErro" class="error-message">
-      {{ mensagemErro }}
-    </div>
-
-    <div *ngIf="mensagemSucesso" class="success-message">
-      {{ mensagemSucesso }}
-    </div>
   </form>
 </section>

@@ -66,13 +66,22 @@ export class AuthService {
   }
 
   // Método para limpar o localStorage, caso o usuário faça logout
+  // logout(): void {
+  //   try {
+  //     localStorage.removeItem(this.numContaKey); // Remove os dados da conta do localStorage
+  //     this.loggedIn.next(false); // Atualiza o estado de autenticação
+  //   } catch (error) {
+  //     console.error('Erro ao remover dados do localStorage', error);
+  //   }
+  // }
   logout(): void {
     try {
-      localStorage.removeItem(this.numContaKey); // Remove os dados da conta do localStorage
-      localStorage.removeItem(this.idAdminKey); // Remove os dados admin do localStorage
+      localStorage.clear(); // Limpa todos os dados do localStorage
       this.loggedIn.next(false); // Atualiza o estado de autenticação
+      console.log('Usuário deslogado e LocalStorage limpo.');
     } catch (error) {
-      console.error('Erro ao remover dados do localStorage', error);
+      console.error('Erro ao limpar o localStorage', error);
     }
   }
+  
 }

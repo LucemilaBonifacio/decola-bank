@@ -7,6 +7,8 @@ import { AuthService } from '../../../../services/auth.service';
 import { Conta } from '../../../../classes/conta';
 import { ClienteService } from '../../../../services/clientes.service';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-saque',
   standalone: true,
@@ -55,16 +57,19 @@ export class SaqueComponent implements OnInit {
   verificarSaldo(): void {
     if (!this.conta) {
       this.mensagemErro = 'Erro: Conta não encontrada.';
+       Swal.fire('Erro', this.mensagemErro, 'error');
       return;
     }
 
     if (this.valor <= 0) {
       this.mensagemErro = 'Erro: O valor do saque deve ser maior que zero.';
+       Swal.fire('Erro', this.mensagemErro, 'error');
       return;
     }
 
     if (this.valor > this.conta.saldo) {
       this.mensagemErro = 'Erro: O valor digitado é maior que o saldo disponível.';
+       Swal.fire('Erro', this.mensagemErro, 'error');
       return;
     }
 
@@ -80,6 +85,7 @@ export class SaqueComponent implements OnInit {
     this.transacaoService.realizarSaqueApi(this.valor, contaId).subscribe(
       (resposta: string) => {
         this.mensagemSucesso = resposta; // Mensagem de sucesso retornada da API
+         Swal.fire('Sucesso', this.mensagemSucesso, 'success');
         setTimeout(() => {
           this.router.navigate(['/tela-inicial-cliente']); // Volta para tela inicial
         }, 3000); // Espera 2 segundos antes de voltar
@@ -87,11 +93,13 @@ export class SaqueComponent implements OnInit {
       (error) => {
         console.error('Erro ao processar saque', error);
         this.mensagemErro = 'Erro ao processar o saque.';
-        
+         Swal.fire('Erro', this.mensagemErro, 'error');
       }
-    );
-    
-  }
+    );  
+}
+voltar(): void {
+  this.router.navigate(['/tela-inicial-cliente']);
+}
 
 
 }

@@ -1,14 +1,16 @@
 <section class="card-pix-container">
   <article class="card-pix">
+    <div class="icon-container" (click)="voltar()">
+      <i class="bi bi-arrow-left-square"></i>
+    </div>
     <header class="title">
       <h1 class="pix-title">Pix</h1>
-      <h2 class="pix-sub-title">Saldo: R$ {{ saldoCliente }}</h2>
+      <h2 class="pix-sub-title">Saldo: R$ {{ conta.saldo }}</h2>
     </header>
     <div class="value0">
       <select class="dropdown" [(ngModel)]="selectedOption" name="options" required>
         <option value="" disabled selected>Tipo da chave</option>
         <option value="cpf">Cpf</option>
-        <option value="chaveAleatoria">Chave Aleatória</option>
         <option value="email">Email</option>
         <option value="telefone">Telefone</option>
       </select>
@@ -21,9 +23,6 @@
     </div>
     <div class="button-container">
       <button id="btn-02" type="button" (click)="realizarPix()">Realizar Pix</button>
-    </div>
-    <div *ngIf="mensagemErro" class="error-message">
-      {{ mensagemErro }}
     </div>
   </article>
 </section>
