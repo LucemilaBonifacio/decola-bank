@@ -20,7 +20,7 @@ export class SaqueComponent implements OnInit {
   valor: number = 0;
   mensagemErro: string = '';
   mensagemSucesso: string = ''; 
-  conta: Conta = new Conta();
+  conta: Conta = new Conta('', '', 0, new Date(), 0, 0, '', '', 0, '', 0);
   numConta : string = localStorage.getItem('numConta')?? '';
 
   constructor(

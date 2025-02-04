@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Cliente } from '../classes/cliente';
+import { Cadastro } from '../classes/cadastro';
+import { Conta } from '../classes/conta';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +12,10 @@ export class GerenteService {
 
   constructor(private http: HttpClient) { }
 
- 
-  baseUrl: string = "http://localhost:8081/gerente";  
 
-  
+  baseUrl: string = "http://localhost:8081/gerente";
+
+
   public getClientes(): Observable<Cliente[]> {
     const url: string = "listar/clientes";
     return this.http.get<Cliente[]>(`${this.baseUrl}/${url}`);
@@ -24,21 +26,15 @@ export class GerenteService {
     return this.http.get<Cliente>(`${this.baseUrl}/${url}`);
   }
 
-  
-  public postCliente(cliente: Cliente, id: number): Observable<any> {
-  const url = `${this.baseUrl}/novo/clientes/${id}`; 
-  const dados = {
-    cpf: cliente.cpf,
-    nome: cliente.nome,
-    email: cliente.email,
-    telefone: cliente.telefone,
-    statusCliente: cliente.statusCliente?.toString() ?? '0',
-    endereco: cliente.endereco,
-    senha: cliente.senha,
-  };
+  public getContasPorIdCliente(id: number): Observable<Conta[]>{
+    const url = `${this.baseUrl}/buscar/conta/${id}`;
+    return this.http.get<Conta[]>(url);
+  }
 
-  return this.http.post<any>(url, dados);
-}
+  public postCliente(cadastro: Cadastro, id: number): Observable<string>{
+    const url = `${this.baseUrl}/novo/clientes/${id}`;
+    return this.http.post(url, cadastro, {responseType: 'text'});
+  }
 
   public putClientes(cliente: Cliente, id: number): Observable<Cliente> {
     const url = `alterar/${id}`;

@@ -1,1 +1,34 @@
-<p>conta works!</p>
+<div class="container mt-5">
+    <div class="row justify-content-center mt-4">
+      <div class="col-12 col-md-6 mt-3">
+       
+        <div class="card shadow border-0 rounded-3">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-4">
+
+              <!-- Nome do Cliente -->
+              <h5 class="card-title">{{contas.nomeCliente || 'Nome não informado'}}</h5>
+            </div>
+            
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <p><strong>Número da Conta:</strong> {{contas.numConta}}</p>
+                <p><strong>Agência:</strong> {{contas.agencia}}</p>
+              </div>
+              <div class="col-12 col-md-6">
+                <p><strong>Data de Criação:</strong> {{contas.dataCriacao | date:'dd/MM/yyyy'}}</p>
+                <p><strong>Tipo de Conta:</strong> {{ getTipoContaDescricao(contas.tipoConta) }}</p>
+              </div>
+            </div>
+  
+            <div class="d-flex justify-content-end mt-4">
+                <a [routerLink]="['/clientes/conta', contas.id, 'encerrar']" class="btn btn-danger">
+                  <i class="bi bi-trash"></i> Cancelar Conta
+                </a>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { GerenteService } from '../../../services/gerente.service';
-import { ContaService } from '../../../services/conta.service';
-import { Cliente } from '../../../classes/cliente';
-import { Conta } from '../../../classes/conta';
+// import { ContaService } from '../../../services/conta.service';
+// import { Cliente } from '../../../classes/cliente';
+// import { Conta } from '../../../classes/conta';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
+import { Cadastro } from '../../../classes/cadastro';
+declare var bootstrap: any;
+// import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-cliente-novo',
@@ -15,72 +18,72 @@ import { FormsModule, NgForm } from '@angular/forms';
 })
 export class ClienteNovoComponent {
 
-  cliente: Cliente = new Cliente();
-  conta: Conta = new Conta();
-  id!: number; 
 
+  cpf: string = '';
+  nome: string = '';
+  email: string = '';
+  dataNascimento: string = '';
+  telefone: string = '';
+  statusCliente: number = 1;
+  cep: string = '';
+  endereco: string = '';
+  numero: string = '';
+  complemento: string = '';
+  bairro: string = '';
+  cidade: string = '';
+  senha: string = '';
+  tipoConta: string = '';
+  agencia: string = '';
+  numConta: string = '';
+  idAdmin: number = parseInt(localStorage.getItem('idAdmin')?? '');
+
+  mensagemErro: string = '';
+  mensagemSucesso: string = '';
+
+  cadastro: Cadastro = new Cadastro(
+    this.cpf, this.nome, this.email, this.dataNascimento, this.telefone, this.statusCliente, this.cep, this.endereco, this.complemento, this.bairro, 
+    this.cidade,this.senha, this.tipoConta, this.agencia
+  );
 
   constructor(
     private gerenteService: GerenteService,
-    private contaService: ContaService,
-    private router: Router
+    private router: Router,
   ) {}
 
-
- 
-  gerarNumeroConta(): string {
-    const numero = Math.floor(Math.random() * 1000000000).toString().padStart(10, '0');
-    return numero;
-
-  }
-
+  concluir() {
+    this.cadastro = new Cadastro(
+      this.cpf, this.nome, this.email, this.dataNascimento, this.telefone,
+      this.statusCliente, this.cep, this.endereco, this.numero,
+      this.complemento, this.bairro, this.cidade, this.senha, this.tipoConta, this.agencia, this.numConta
+    );
   
-
-  concluir(form: NgForm) {
-    if (form.invalid) {
-      console.error('Formulário inválido. Preencha todos os campos corretamente.');
-      return;
-    }
-    
-    console.log('ID:', this.id);
-    if (this.id === undefined) {
-    console.error('ID está indefinido!');
-    return; // ou retornar uma mensagem de erro.
-    }
-
-
-    this.gerenteService.postCliente(this.cliente, this.id).subscribe({
-      next: (clienteCriado) => {
-        this.conta.idCliente = clienteCriado.id;
-        this.conta.nomeCliente = clienteCriado.nome;
-        this.conta.cpfCliente = clienteCriado.cpf;
-        this.conta.numConta = this.gerarNumeroConta(); 
-        this.conta.saldo = 0;  
-        this.conta.dataCriacao = new Date();
-        this.conta.tipoConta = 1;  // Tipo de conta (ex: 1 para Simples)
-  
-
-        this.contaService.criarConta(this.conta).subscribe({
-          next: () => {
-            this.router.navigate(['/clientes']);
-          },
-          error: (err) => {
-            console.error('Erro ao criar conta:', err);
-          }
-        });
+    this.gerenteService.postCliente(this.cadastro, this.idAdmin).subscribe(
+      response => {
+        console.log("Resposta do servidor:", response);
+        this.numConta = this.extrairNumeroConta(response);
+        var modal = new bootstrap.Modal(document.getElementById('sucessoModal'));
+        modal.show();
+        // this.fechar();
       },
-      error: (err) => {
-        console.error('Erro ao criar cliente:', err);
+      error => {
+        console.error("Erro ao cadastrar cliente:", error);
+        this.mensagemErro = "Erro ao cadastrar cliente: " + (error.error?.message || error.message);
+        window.alert(this.mensagemErro);
       }
-    });
+    );
   }
+  
 
-  cancelar() {
+  fechar() {
     this.router.navigate(['/clientes']);  
-
   }
 
-  // Método para buscar o endereço pelo CEP
+  extrairNumeroConta(response: string): string {
+    const match = response.match(/Conta:\s(\d+)/);
+    return match ? match[1] : 'Desconhecido';
+  }
+
+  
   // buscarEndereco() {
   //   if (this.cep.length === 8) {
   //     this.cepService.buscarCep(this.cep).subscribe(

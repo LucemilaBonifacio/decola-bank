@@ -120,3 +120,15 @@ h2.text-center {
     background-color: #ff4d4f;
     color: white;
 }
+
+.action-button {
+    background-color: #fc8207;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+}
+  
+.action-button:hover {
+    background-color: #e57305; 
+}

@@ -14,6 +14,8 @@ import { GerenteService } from '../../../services/gerente.service';
 })
 
 export class ClientesListaComponent implements OnInit {
+  clientes: Cliente[] = [];
+
   constructor(private gerenteService: GerenteService){}
 
   ngOnInit(): void {
@@ -22,5 +24,9 @@ export class ClientesListaComponent implements OnInit {
     });
   }
 
-  clientes: Cliente[] = [];
+  getStatusDescricao(status?: number): string {
+    return status === 1 ? 'Ativo' : 'Inativo';
+  }
+
+  
 }
