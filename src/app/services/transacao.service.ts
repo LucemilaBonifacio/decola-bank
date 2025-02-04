@@ -59,4 +59,10 @@ public realizarPagamentoApi(id: number, pagamentoBoleto: PagamentoBoleto): Obser
 }
 
 }
+
+public realizarTransferenciaApi(valor: number, id: number, numContaDestino : string): Observable<string> {
+  const url = `${this.baseUrl}/transferencia/${id}/${numContaDestino}`;
+  return this.http.post<string>(url, { valor }, { responseType: 'text' as 'json' });
+
+}
 }
