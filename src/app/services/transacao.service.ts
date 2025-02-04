@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { Pix } from '../classes/pix';
+import { PagamentoBoleto } from '../classes/pagamentoBoleto';
 
 
 
@@ -11,6 +12,7 @@ import { Pix } from '../classes/pix';
 export class TransacaoService {
 
   private baseUrl: string = "http://localhost:8081/transacao";
+  private baseUrlBoleto: string = "http://localhost:8081/boleto";
 
   constructor(private http: HttpClient) { }
   //Saque
@@ -32,10 +34,30 @@ export class TransacaoService {
   }
 
   //Pix
-  public realizarPixApi(idContaOrigem: number, chavePixDestino: string, valor: number): Observable<string> {
-    const url = `${this.baseUrl}/pix/${idContaOrigem}/${chavePixDestino}`;
+  public realizarPixApi(id: number, chavePixDestino: string, valor: number): Observable<string> {
+    const url = `${this.baseUrl}/pix/${id}/${chavePixDestino}`;
     return this.http.post<string>(url, { valor }, { responseType: 'text' as 'json' });
 
 }
+
+//Pagamento de boleto
+public realizarPagamentoApi(id: number, pagamentoBoleto: PagamentoBoleto): Observable<string> {
+  const url = `${this.baseUrlBoleto}/novo/pagamento/${id}`;
+  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+   
+  {
+    const body = JSON.stringify({
+      
+      "codBarras": pagamentoBoleto.codBarras.toString(),  // Garantir que seja String, já que o backend espera Map<String, String>
+      "dataVencimento": pagamentoBoleto.dataVencimento.toString(),
+      "valor": pagamentoBoleto.valor.toString(),    // Convertendo números para string, se necessário
+      "descricaoBoleto": pagamentoBoleto.descricao.toString(),
+      
+    });
+
   
+  return this.http.post<string>(url, body, {headers});
+}
+
+}
 }
