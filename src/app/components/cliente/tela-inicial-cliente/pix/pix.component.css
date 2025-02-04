@@ -87,10 +87,7 @@
   border-radius: 5px;
 }
 
-.error-message {
-  color: red;
-  margin-top: 10px;
-}
+
 
 /* Responsividade */
 @media (max-width: 768px) {
