@@ -82,7 +82,7 @@ export class TransferenciaComponent implements OnInit {
                Swal.fire('Erro', this.mensagemErro, 'error');
             }
           );
-      
+        }
   }
 
   voltar(): void {
@@ -91,4 +91,3 @@ export class TransferenciaComponent implements OnInit {
 
 }
 
-}
