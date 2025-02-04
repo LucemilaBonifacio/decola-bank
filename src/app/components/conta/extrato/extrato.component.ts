@@ -72,7 +72,9 @@ export class ExtratoComponent implements OnInit {
           this.mensagemErro = '';
   
           // Salva as transações no sessionStorage antes de navegar
+          console.log('Transações antes de salvar no sessionStorage:', this.transacoes);
           sessionStorage.setItem('transacoes', JSON.stringify(this.transacoes));
+
   
           this.router.navigate(['/view-extrato']);
         }

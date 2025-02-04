@@ -17,22 +17,19 @@ export class ViewExtratoComponent implements OnInit {
   modalAberto: boolean = false;
   email: string = '';
 
-  constructor(private router: Router) {
-    const navigation = this.router.getCurrentNavigation();
-    
-    if (navigation?.extras.state?.['transacoes']) {
-      this.transacoes = navigation.extras.state['transacoes'];
-    } else {
-      // Recupera do sessionStorage caso não tenha vindo via navigation
-      const storedTransacoes = sessionStorage.getItem('transacoes');
-      this.transacoes = storedTransacoes ? JSON.parse(storedTransacoes) : [];
-    }
-  }
-  
-  
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {
+ngOnInit(): void {
+  const navigation = this.router.getCurrentNavigation();
+  if (navigation?.extras.state?.['transacoes']) {
+    this.transacoes = navigation.extras.state['transacoes'];
+  } else {
+    const storedTransacoes = sessionStorage.getItem('transacoes');
+    this.transacoes = storedTransacoes ? JSON.parse(storedTransacoes) : [];
   }
+
+  console.log('Transações carregadas na view:', this.transacoes);
+}
 
   ngOnDestroy(): void {
     sessionStorage.removeItem('transacoes');

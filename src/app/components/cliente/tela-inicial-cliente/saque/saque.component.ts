@@ -80,6 +80,7 @@ export class SaqueComponent implements OnInit {
       this.mensagemErro = 'Erro: ID da conta inválido.';
       return;
     }
+   
 
     // Realizar a transação de saque na API
     this.transacaoService.realizarSaqueApi(this.valor, contaId).subscribe(
