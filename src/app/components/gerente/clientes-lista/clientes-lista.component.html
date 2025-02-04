@@ -17,7 +17,7 @@
                     <td>{{c.nome}}</td>
                     <td>{{c.email}}</td>
                     <td>{{c.telefone}}</td>
-                    <td>{{c.statusCliente}}</td>
+                    <td>{{ getStatusDescricao(c.statusCliente) }}</td>
 
                     <td>
                         <a routerLink="/clientes/conta/{{c.id}}"><i class="bi bi-eye me-2"></i></a>  

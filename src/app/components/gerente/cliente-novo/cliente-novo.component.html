@@ -1,8 +1,9 @@
 
 <div class="container mt-3">
-  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
-    <div class="card shadow p-4">
-      <h3 class="mb-4">Cadastrar Conta</h3>
+  <form #form="ngForm">
+    <div class="card shadow p-4 mb-5">
+      <h3 class="mb-4">Cadastrar Cliente e Conta</h3>
+
       <div class="row mb-2">
         <div class="col-md-6">
           <label for="cpf" class="form-label">CPF</label>
@@ -15,15 +16,14 @@
             #cpfModel="ngModel"
             required
             pattern="^\d{11}$"
-            placeholder="Digite seu CPF"
+            placeholder="Digite o CPF"
           />
           <div *ngIf="cpfModel.touched && cpfModel.invalid" class="text-danger">
             <div *ngIf="cpfModel.errors?.['required']">O CPF é obrigatório.</div>
-            <div *ngIf="cpfModel.errors?.['pattern']">
-              O CPF deve conter 11 dígitos.
-            </div>
+            <div *ngIf="cpfModel.errors?.['pattern']">O CPF deve conter 11 dígitos.</div>
           </div>
         </div>
+
         <div class="col-md-6">
           <label for="email" class="form-label">E-mail</label>
           <input
@@ -34,7 +34,7 @@
             [(ngModel)]="email"
             #emailModel="ngModel"
             required
-            placeholder="Digite seu e-mail"
+            placeholder="Digite o e-mail"
           />
           <div *ngIf="emailModel.touched && emailModel.invalid" class="text-danger">
             <div *ngIf="emailModel.errors?.['required']">O e-mail é obrigatório.</div>
@@ -42,22 +42,57 @@
           </div>
         </div>
       </div>
+
+    
       <div class="mb-2">
-        <label for="nomeCompleto" class="form-label">Nome Completo</label>
+        <label for="nome" class="form-label">Nome Completo</label>
         <input
-          id="nomeCompleto"
+          id="nome"
           type="text"
           class="form-control"
-          name="nomeCompleto"
-          [(ngModel)]="nomeCompleto"
-          #nomeCompletoModel="ngModel"
+          name="nome"
+          [(ngModel)]="nome"
           required
-          placeholder="Digite seu nome completo"
+          placeholder="Digite o nome completo"
         />
-        <div *ngIf="nomeCompletoModel.touched && nomeCompletoModel.invalid" class="text-danger">
-          O nome completo é obrigatório.
+      </div>
+      
+
+      <div class="row mb-2">
+        <div class="col-md-6">
+          <label for="dataNascimento" class="form-label">Data Nascimento</label>
+          <input
+            id="dataNascimento"
+            type="date"
+            class="form-control"
+            name="dataNascimento"
+            [(ngModel)]="dataNascimento"
+            required
+          />
+        </div>
+  
+
+        <div class="col-md-6">
+          <label for="telefone" class="form-label">Telefone</label>
+          <input
+            id="telefone"
+            type="text"
+            class="form-control"
+            name="telefone"
+            [(ngModel)]="telefone"
+            #telefoneModel="ngModel"
+            required
+            pattern="^\d{11}$"
+            placeholder="Digite o telefone"
+          />
+          <div *ngIf="telefoneModel.touched && telefoneModel.invalid" class="text-danger">
+            <div *ngIf="telefoneModel.errors?.['required']">O telefone é obrigatório.</div>
+            <div *ngIf="telefoneModel.errors?.['pattern']">O telefone deve conter 11 dígitos.</div>
+          </div>
         </div>
       </div>
+
+      
 
       <h5 class="mt-2 mb-2">Endereço</h5>
       <div class="row mb-2">
@@ -69,15 +104,11 @@
             class="form-control"
             name="cep"
             [(ngModel)]="cep"
-            #cepModel="ngModel"
             required
             placeholder="Digite o CEP"
-            (blur)="buscarEndereco()"
           />
-          <div *ngIf="cepModel.touched && cepModel.invalid" class="text-danger">
-            O CEP é obrigatório.
-          </div>
         </div>
+
         <div class="col-md-6">
           <label for="endereco" class="form-label">Endereço</label>
           <input
@@ -139,6 +170,7 @@
         </div>
       </div>
 
+   
       <h4 class="mt-4 mb-2">Dados da Conta</h4>
       <div class="row mb-2">
         <div class="col-md-4">
@@ -154,6 +186,7 @@
             <option value="2">Especial</option>
           </select>
         </div>
+
         <div class="col-md-4">
           <label for="agencia" class="form-label">Agência</label>
           <input
@@ -165,23 +198,42 @@
             placeholder="Digite a agência"
           />
         </div>
+
         <div class="col-md-4">
-          <label for="senhaInicial" class="form-label">Senha Inicial</label>
+          <label for="senha" class="form-label">Senha Inicial</label>
           <input
-            id="senhaInicial"
+            id="senha"
             type="password"
             class="form-control"
-            name="senhaInicial"
-            [(ngModel)]="senhaInicial"
+            name="senha"
+            [(ngModel)]="senha"
             placeholder="Digite a senha inicial"
           />
         </div>
       </div>
 
+     
       <div class="d-flex justify-content-between mt-3">
-        <button type="button" class="btn btn-outline-danger" (click)="cancelar()">Cancelar</button>
-        <button type="submit" class="btn btn-success"> Criar Conta
-        </button>
+        <button type="button" class="btn btn-outline-danger" (click)="fechar()">Cancelar</button>
+        <button type="button" class="btn btn-outline-success" (click)="concluir()">Criar Conta</button>
+      </div>
+    </div>
+
+    <div class="modal fade" id="sucessoModal" tabindex="-1" aria-labelledby="sucessoModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h4>Conta criada com sucesso!</h4>
+            <p><strong>Nome:</strong> {{ nome }}</p>
+            <p><strong>Número da Conta:</strong> {{ numConta }}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" (click)="fechar()">OK</button>
+          </div>
+        </div>
       </div>
     </div>
   </form>

@@ -1,9 +1,14 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CepService } from '../../../services/cep.service';
-
+import { GerenteService } from '../../../services/gerente.service';
+// import { ContaService } from '../../../services/conta.service';
+// import { Cliente } from '../../../classes/cliente';
+// import { Conta } from '../../../classes/conta';
+import { CommonModule } from '@angular/common';
+import { FormsModule, NgForm } from '@angular/forms';
+import { Cadastro } from '../../../classes/cadastro';
+declare var bootstrap: any;
+// import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-cliente-novo',
@@ -12,70 +17,87 @@ import { CepService } from '../../../services/cep.service';
   styleUrls: ['./cliente-novo.component.css']
 })
 export class ClienteNovoComponent {
-  // Dados do cliente
-  cpf: string = '';
-  nomeCompleto: string = '';
-  email: string = '';
 
-  // Dados do endereço
+
+  cpf: string = '';
+  nome: string = '';
+  email: string = '';
+  dataNascimento: string = '';
+  telefone: string = '';
+  statusCliente: number = 1;
   cep: string = '';
   endereco: string = '';
   numero: string = '';
   complemento: string = '';
   bairro: string = '';
   cidade: string = '';
-
-  // Dados da conta
+  senha: string = '';
   tipoConta: string = '';
   agencia: string = '';
-  senhaInicial: string = '';
+  numConta: string = '';
+  idAdmin: number = parseInt(localStorage.getItem('idAdmin')?? '');
 
-  // Outros
-  politica: boolean = false;
-  mostrarPopup: boolean = false;
+  mensagemErro: string = '';
+  mensagemSucesso: string = '';
 
-  constructor(private router: Router, private cepService: CepService) {}
+  cadastro: Cadastro = new Cadastro(
+    this.cpf, this.nome, this.email, this.dataNascimento, this.telefone, this.statusCliente, this.cep, this.endereco, this.complemento, this.bairro, 
+    this.cidade,this.senha, this.tipoConta, this.agencia
+  );
 
-  // Método para fechar o formulário
-  cancelar() {
-    this.router.navigate(['/clientes']);
-  }
+  constructor(
+    private gerenteService: GerenteService,
+    private router: Router,
+  ) {}
 
-  // Método chamado ao submeter o formulário
-  onSubmit(form: any) {
-    if (form.valid) {
-      this.mostrarPopup = true;
-      console.log('Formulário enviado com sucesso:', form.value);
-    } else {
-      console.log('Formulário inválido!');
-    }
-  }
-
-  getEnderecoCompleto(): string {
-    // Concatenar os dados do endereço em um único formato
-    return `${this.endereco}, ${this.numero || 'S/N'}${this.complemento ? `, ${this.complemento}` : ''}, ${this.bairro}, ${this.cidade}, ${this.cep}`;
-  }
-
-  // Método para concluir o processo
   concluir() {
-    this.router.navigate(['/clientes']);
+    this.cadastro = new Cadastro(
+      this.cpf, this.nome, this.email, this.dataNascimento, this.telefone,
+      this.statusCliente, this.cep, this.endereco, this.numero,
+      this.complemento, this.bairro, this.cidade, this.senha, this.tipoConta, this.agencia, this.numConta
+    );
+  
+    this.gerenteService.postCliente(this.cadastro, this.idAdmin).subscribe(
+      response => {
+        console.log("Resposta do servidor:", response);
+        this.numConta = this.extrairNumeroConta(response);
+        var modal = new bootstrap.Modal(document.getElementById('sucessoModal'));
+        modal.show();
+        // this.fechar();
+      },
+      error => {
+        console.error("Erro ao cadastrar cliente:", error);
+        this.mensagemErro = "Erro ao cadastrar cliente: " + (error.error?.message || error.message);
+        window.alert(this.mensagemErro);
+      }
+    );
+  }
+  
+
+  fechar() {
+    this.router.navigate(['/clientes']);  
   }
 
-  // Método para buscar o endereço pelo CEP
-  buscarEndereco() {
-    if (this.cep.length === 8) {
-      this.cepService.buscarCep(this.cep).subscribe(
-        data => {
-          if (data) {
-            this.endereco = data.logradouro;
-            this.bairro = data.bairro;
-            this.cidade = data.localidade;
-          }
-        },
-        error => {
-          console.error('Erro ao buscar o CEP:', error);
-        }
-      );
-    }
+  extrairNumeroConta(response: string): string {
+    const match = response.match(/Conta:\s(\d+)/);
+    return match ? match[1] : 'Desconhecido';
   }
+
+  
+  // buscarEndereco() {
+  //   if (this.cep.length === 8) {
+  //     this.cepService.buscarCep(this.cep).subscribe(
+  //       data => {
+  //         if (data) {
+  //           this.endereco = data.logradouro;
+  //           this.bairro = data.bairro;
+  //           this.cidade = data.localidade;
+  //         }
+  //       },
+  //       error => {
+  //         console.error('Erro ao buscar o CEP:', error);
+  //       }
+  //     );
+  //   }
+  // }
 }

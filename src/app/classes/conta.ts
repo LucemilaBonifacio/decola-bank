@@ -9,6 +9,6 @@ export class Conta {
       public nomeCliente: string = '',
       public cpfCliente: string = '',
       public id?: number,
-    ) {}
-  
+    ) {} 
   }
+

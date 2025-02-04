@@ -10,5 +10,4 @@ export class Extrato {
       public statusTransacao: string = '',
       public tarifa: string = ''
     ) {}
-  
   }
