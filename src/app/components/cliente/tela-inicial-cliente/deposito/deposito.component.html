@@ -35,21 +35,10 @@
           required
         />
       </div>
-
-      <!-- Exibição de Mensagens de Erro -->
-     
-
-      <!-- Botão -->
       <div class="button-container">
         <button id="btn-02" type="button" (click)="verificarSaldo()">Confirmar</button>
       </div>
-      <div *ngIf="mensagemErro" class="erro-mensagem">
-        <small>{{ mensagemErro }}</small>
-      </div>
-
-      <div *ngIf="mensagemSucesso" class="erro-mensagem">
-        <small>{{ mensagemSucesso }}</small>
-      </div>
+      
     </form>
   </div>
 </section>
