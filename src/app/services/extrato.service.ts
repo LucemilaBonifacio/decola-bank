@@ -1,16 +1,18 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Extrato } from '../classes/extrato';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExtratoService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getTransacoes() {
-    return [
-      { idTransacao: 1, titularConta: 'João Silva', conta: '12345-6', valor: 100.00, dataTransacao: new Date(), tipoTransacao: 'Débito', codigoTransacao: '001', statusTransacao: 'Concluída', tarifa: 'Nenhuma' },
-      // Adicione mais transações conforme necessário
-    ];
-  }
+  baseUrl: string = "http://localhost:8081/conta"; 
+
+  public getTransacoesApi(id: number, numConta : string, dias : number): Observable<Extrato[]> { 
+      return this.http.get<Extrato[]>(`${this.baseUrl}/extrato/${numConta}/${dias}`);
+    }
 }
