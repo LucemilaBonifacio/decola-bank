@@ -215,7 +215,7 @@
      
       <div class="d-flex justify-content-between mt-3">
         <button type="button" class="btn btn-outline-danger" (click)="fechar()">Cancelar</button>
-        <button type="button" class="btn btn-success" (click)="concluir()">Criar Conta</button>
+        <button type="button" class="btn btn-outline-success" (click)="concluir()">Criar Conta</button>
       </div>
     </div>
 
@@ -227,10 +227,11 @@
           </div>
           <div class="modal-body">
             <h4>Conta criada com sucesso!</h4>
+            <p><strong>Nome:</strong> {{ nome }}</p>
             <p><strong>Número da Conta:</strong> {{ numConta }}</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn action-button" data-bs-dismiss="modal" (click)="fechar()">OK</button>
+            <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" (click)="fechar()">OK</button>
           </div>
         </div>
       </div>

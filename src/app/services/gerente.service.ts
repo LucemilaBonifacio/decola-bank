@@ -40,4 +40,9 @@ export class GerenteService {
     const url = `alterar/${id}`;
     return this.http.put<Cliente>(`${this.baseUrl}/${url}`, cliente);
   }
+
+  public deleteConta(id: number): Observable<String> {
+    const url = `${this.baseUrl}/remover/cliente/${id}`;
+    return this.http.put(url, {}, {responseType: 'text'}); 
+  }
 }

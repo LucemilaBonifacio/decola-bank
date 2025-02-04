@@ -40,5 +40,5 @@ export const routes: Routes = [
   { path: 'transferencia', component: TransferenciaComponent, canActivate: [AuthGuard] },
   { path: 'pix', component: PixComponent, canActivate: [AuthGuard] },
 
-  { path: 'clientes/conta/:id/encerrar', component: ContaEncerrarComponent } 
+  // { path: 'clientes/conta/:id/encerrar', component: ContaEncerrarComponent } 
 ];
