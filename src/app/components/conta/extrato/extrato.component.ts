@@ -89,6 +89,9 @@ export class ExtratoComponent implements OnInit {
       }
     });
   }
-  
+
+voltar(): void {
+  this.router.navigate(['/tela-inicial-cliente']);
+}
   
 }

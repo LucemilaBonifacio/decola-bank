@@ -1,7 +1,9 @@
 
-<section class="card-extrato-container">
-  
+<section class="card-extrato-container">  
   <form class="card-extrato">
+    <div class="icon-container" (click)="voltar()">
+      <i class="bi bi-arrow-left-square"></i>
+    </div>
     <label class="title">
       <h1 class="extrato-title">Extrato</h1>
       <h2 class="extrato-sub-title">Saldo: R$ {{ conta.saldo }}</h2>
