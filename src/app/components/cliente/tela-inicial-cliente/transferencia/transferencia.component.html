@@ -1,5 +1,8 @@
 <section class="card-transferencia-container">
     <form class="card-transferencia">
+      <div class="icon-container" (click)="voltar()">
+        <i class="bi bi-arrow-left-square"></i>
+      </div>
       <label class="title">
         <h1 class="transferencia-title">Transferência</h1>
         <h2 class="transferencia-sub-title">Saldo: R$ {{ conta.saldo }}</h2>
@@ -25,4 +28,5 @@
         {{ mensagemSucesso }}
       </div>
     </form>
+    
   </section>

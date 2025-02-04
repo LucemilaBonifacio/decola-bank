@@ -1,5 +1,8 @@
 <section class="card-pix-container">
   <article class="card-pix">
+    <div class="icon-container" (click)="voltar()">
+      <i class="bi bi-arrow-left-square"></i>
+    </div>
     <header class="title">
       <h1 class="pix-title">Pix</h1>
       <h2 class="pix-sub-title">Saldo: R$ {{ conta.saldo }}</h2>
@@ -21,13 +24,5 @@
     <div class="button-container">
       <button id="btn-02" type="button" (click)="realizarPix()">Realizar Pix</button>
     </div>
-
-    <!-- <div *ngIf="mensagemErro" class="custom-error">
-      {{ mensagemErro }}
-    </div>
-
-    <div *ngIf="mensagemSucesso" class="custom-message">
-      {{ mensagemSucesso }}
-    </div> -->
   </article>
 </section>

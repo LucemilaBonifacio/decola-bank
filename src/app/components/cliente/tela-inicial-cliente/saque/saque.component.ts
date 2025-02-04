@@ -95,9 +95,11 @@ export class SaqueComponent implements OnInit {
         this.mensagemErro = 'Erro ao processar o saque.';
          Swal.fire('Erro', this.mensagemErro, 'error');
       }
-    );
-    
-  }
+    );  
+}
+voltar(): void {
+  this.router.navigate(['/tela-inicial-cliente']);
+}
 
 
 }

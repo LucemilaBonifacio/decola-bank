@@ -80,5 +80,11 @@ export class PixComponent implements OnInit {
         }
       );
     }
+
   }
-}
+  voltar(): void {
+    this.router.navigate(['/tela-inicial-cliente']);
+  }
+    
+  }
+  
