@@ -7,6 +7,7 @@ import { GerenteService } from '../../../services/gerente.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Cadastro } from '../../../classes/cadastro';
+import { CepService } from '../../../services/cep.service';
 declare var bootstrap: any;
 // import { AuthService } from '../../../services/auth.service';
 
@@ -47,7 +48,7 @@ export class ClienteNovoComponent {
 
   constructor(
     private gerenteService: GerenteService,
-    private router: Router,
+    private router: Router, private cepService: CepService
   ) {}
 
   concluir() {
@@ -84,20 +85,20 @@ export class ClienteNovoComponent {
   }
 
   
-  // buscarEndereco() {
-  //   if (this.cep.length === 8) {
-  //     this.cepService.buscarCep(this.cep).subscribe(
-  //       data => {
-  //         if (data) {
-  //           this.endereco = data.logradouro;
-  //           this.bairro = data.bairro;
-  //           this.cidade = data.localidade;
-  //         }
-  //       },
-  //       error => {
-  //         console.error('Erro ao buscar o CEP:', error);
-  //       }
-  //     );
-  //   }
-  // }
+  buscarEndereco() {
+    if (this.cep.length === 8) {
+      this.cepService.buscarCep(this.cep).subscribe(
+        data => {
+          if (data) {
+            this.endereco = data.logradouro;
+            this.bairro = data.bairro;
+            this.cidade = data.localidade;
+          }
+        },
+        error => {
+          console.error('Erro ao buscar o CEP:', error);
+        }
+      );
+    }
+  }
 }

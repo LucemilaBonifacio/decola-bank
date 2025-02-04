@@ -7,7 +7,6 @@ import { ClienteNovoComponent } from './components/gerente/cliente-novo/cliente-
 import { ClienteAlteracaoComponent } from './components/gerente/cliente-alteracao/cliente-alteracao.component';
 import { ContaComponent } from './components/conta/conta.component';
 import { ExtratoComponent } from './components/conta/extrato/extrato.component';
-import { ContaEncerrarComponent } from './components/conta/conta-encerrar/conta-encerrar.component';
 import { TelaInicialClienteComponent } from './components/cliente/tela-inicial-cliente/tela-inicial-cliente.component';
 import { LoginGerenteComponent } from './components/gerente/login-gerente/login-gerente.component';
 import { SaqueComponent } from './components/cliente/tela-inicial-cliente/saque/saque.component';
@@ -38,7 +37,7 @@ export const routes: Routes = [
   { path: 'view-extrato', component: ViewExtratoComponent, canActivate: [AuthGuard] },
   { path: 'deposito', component: DepositoComponent, canActivate: [AuthGuard] },
   { path: 'transferencia', component: TransferenciaComponent, canActivate: [AuthGuard] },
-  { path: 'pix', component: PixComponent, canActivate: [AuthGuard] },
+  { path: 'pix', component: PixComponent, canActivate: [AuthGuard] }
 
-  // { path: 'clientes/conta/:id/encerrar', component: ContaEncerrarComponent } 
+  
 ];
