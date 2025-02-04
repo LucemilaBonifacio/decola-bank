@@ -19,28 +19,40 @@ export class ViewExtratoComponent implements OnInit {
 
   constructor(private router: Router) {
     const navigation = this.router.getCurrentNavigation();
-    if (navigation?.extras.state) {
+    
+    if (navigation?.extras.state?.['transacoes']) {
       this.transacoes = navigation.extras.state['transacoes'];
+    } else {
+      // Recupera do sessionStorage caso não tenha vindo via navigation
+      const storedTransacoes = sessionStorage.getItem('transacoes');
+      this.transacoes = storedTransacoes ? JSON.parse(storedTransacoes) : [];
     }
   }
+  
+  
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+    sessionStorage.removeItem('transacoes');
+  }
 
   imprimirExtrato() {
     window.print();
   }
+  
 
   gerarPDF() {
     const doc = new jsPDF();
     doc.text('Extrato de Transações', 10, 10);
 
-    const colunas = ["ID", "Titular", "Conta", "Valor", "Data", "Tipo", "Código", "Status", "Tarifa"];
+    const colunas = ["ID", "Titular", "Valor", "Data", "Tipo", "Código", "Status", "Tarifa"];
     const linhas = this.transacoes.map(transacao => [
       transacao.idTransacao,
       transacao.titularConta,
-      transacao.conta,
       transacao.valor.toFixed(2),
-      transacao.dataTransacao.toLocaleDateString(),
+      transacao.dataTransacao,
       transacao.tipoTransacao,
       transacao.codigoTransacao,
       transacao.statusTransacao,

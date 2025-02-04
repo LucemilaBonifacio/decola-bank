@@ -4,7 +4,7 @@
   <form class="card-extrato">
     <label class="title">
       <h1 class="extrato-title">Extrato</h1>
-      <h2 class="extrato-sub-title">Saldo: R$ {{ saldoCliente }}</h2>
+      <h2 class="extrato-sub-title">Saldo: R$ {{ conta.saldo }}</h2>
     </label>
     <div class="value0">
       <select class="dropdown section" [(ngModel)]="selectedOption" name="options" required>
@@ -16,9 +16,6 @@
     </div>        
     <div class="button-extrato-container">
       <button id="btn-02" routerLink="/view-extrato" type="button" (click)="visualizarExtrato()">Visualizar Extrato</button>
-    </div>
-    <div *ngIf="mensagemErro" class="error-message">
-      {{ mensagemErro }}
     </div>
   </form>
 

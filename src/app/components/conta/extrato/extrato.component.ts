@@ -2,9 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { SaldoService } from '../../../services/saldo.service';
 import { ExtratoService } from '../../../services/extrato.service';
 import { Extrato } from '../../../classes/extrato';
+import { ClienteService } from '../../../services/clientes.service';
+import { Conta } from '../../../classes/conta';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-extrato',
@@ -13,56 +15,74 @@ import { Extrato } from '../../../classes/extrato';
   styleUrls: ['./extrato.component.css']
 })
 export class ExtratoComponent implements OnInit {
-  saldoCliente: number = 0; 
-  selectedOption: string = '';
-  mensagemErro: string = '';
-  transacoes: Extrato[] = []; // Lista de transações
-  transacoesFiltradas: Extrato[] = []; // Lista de transações filtradas
 
-  constructor(private router: Router, private saldoService: SaldoService, private extratoService: ExtratoService) {}
+  selectedOption: number = 0;
+  mensagemErro: string = '';
+  conta : Conta = new Conta();
+  transacoes: Extrato[] = []; // Lista de transações
+  numConta: string = localStorage.getItem('numConta')?? '';
+  
+
+  constructor(private router: Router,
+     private extratoService: ExtratoService,
+     private clienteService : ClienteService,
+     private authService : AuthService) {}
 
   ngOnInit(): void {
-    this.saldoService.getSaldo(1).subscribe(
-      (data: number) => {
-        this.saldoCliente = data;
+
+    this.obterConta(this.numConta);
+
+  }
+
+  obterConta(numConta: string): void {
+    this.clienteService.obterConta(numConta).subscribe(
+      (conta: Conta) => {
+        this.conta = conta;
+        this.authService.setNumConta(numConta);
+        console.log('Dados da Conta:', this.conta);
+        console.log('numConta:', this.numConta)
       },
       (error) => {
-        console.error('Erro ao buscar saldo', error);
+        console.error('Erro ao obter conta:', error);
       }
-    );
-
-    this.transacoes = this.extratoService.getTransacoes().map(transacao => new Extrato(
-      transacao.idTransacao,
-      transacao.titularConta,
-      transacao.conta,
-      transacao.valor,
-      new Date(transacao.dataTransacao),
-      transacao.tipoTransacao,
-      transacao.codigoTransacao,
-      transacao.statusTransacao,
-      transacao.tarifa
-    ));
+    ); 
   }
 
   visualizarExtrato() {
-    const dias = parseInt(this.selectedOption);
+    const contaId = this.conta.id;
+    
+    if (contaId === undefined) {
+      this.mensagemErro = 'Erro: ID da conta inválido.';
+      return;
+    }
+  
+    const dias = this.selectedOption;
     if (isNaN(dias)) {
       this.mensagemErro = 'Selecione uma opção válida.';
       return;
     }
-
-    const dataLimite = new Date();
-    dataLimite.setDate(dataLimite.getDate() - dias);
-
-    this.transacoesFiltradas = this.transacoes.filter(transacao => {
-      return new Date(transacao.dataTransacao) >= dataLimite;
+  
+    this.extratoService.getTransacoesApi(contaId, this.numConta, this.selectedOption).subscribe({
+      next: (resposta) => {
+        this.transacoes = resposta;
+  
+        if (this.transacoes.length === 0) {
+          this.mensagemErro = 'Nenhuma transação encontrada para o período selecionado.';
+        } else {
+          this.mensagemErro = '';
+  
+          // Salva as transações no sessionStorage antes de navegar
+          sessionStorage.setItem('transacoes', JSON.stringify(this.transacoes));
+  
+          this.router.navigate(['/view-extrato']);
+        }
+      },
+      error: (err) => {
+        this.mensagemErro = 'Erro ao obter transações.';
+        console.error('Erro:', err);
+      }
     });
-
-    if (this.transacoesFiltradas.length === 0) {
-      this.mensagemErro = 'Nenhuma transação encontrada para o período selecionado.';
-    } else {
-      this.mensagemErro = '';
-      this.router.navigate(['/view-extrato'], { state: { transacoes: this.transacoesFiltradas } });
-    }
   }
+  
+  
 }
