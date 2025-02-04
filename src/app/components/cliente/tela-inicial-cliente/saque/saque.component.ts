@@ -81,6 +81,7 @@ export class SaqueComponent implements OnInit {
         Swal.fire('Erro', this.mensagemErro, 'error');
       return;
     }
+   
 
     // Realizar a transação de saque na API
     this.transacaoService.realizarSaqueApi(this.valor, contaId).subscribe(
