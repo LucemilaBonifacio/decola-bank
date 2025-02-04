@@ -7,6 +7,8 @@ import { AuthService } from '../../../../services/auth.service';
 import { TransacaoService } from '../../../../services/transacao.service';
 import { ClienteService } from '../../../../services/clientes.service';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-deposito',
   imports: [CommonModule, FormsModule],
@@ -49,11 +51,13 @@ export class DepositoComponent implements OnInit {
   verificarSaldo(): void {
     if (!this.conta) {
       this.mensagemErro = 'Erro: Conta não encontrada.';
+      Swal.fire('Erro', this.mensagemErro, 'error');
       return;
     }
 
     if (this.valor <= 0) {
       this.mensagemErro = 'Erro: O valor do depósito deve ser maior que zero.';
+      Swal.fire('Erro', this.mensagemErro, 'error');
       return;
     }
     this.mensagemErro = '';
@@ -61,6 +65,7 @@ export class DepositoComponent implements OnInit {
     const contaId = this.conta.id;
     if (contaId === undefined) {
       this.mensagemErro = 'Erro: ID da conta inválido.';
+      Swal.fire('Erro', this.mensagemErro, 'error');
       return;
     }
 
@@ -68,6 +73,7 @@ export class DepositoComponent implements OnInit {
     this.transacaoService.realizarDepositoApi(this.valor, contaId).subscribe(
       (resposta: string) => {
         this.mensagemSucesso = resposta; // Mensagem de sucesso retornada da API
+         Swal.fire('Sucesso', this.mensagemSucesso, 'success');
         setTimeout(() => {
           this.router.navigate(['/tela-inicial-cliente']); // Volta para tela inicial
         }, 3000); // Espera 2 segundos antes de voltar
@@ -75,7 +81,7 @@ export class DepositoComponent implements OnInit {
       (error) => {
         console.error('Erro ao processar saque', error);
         this.mensagemErro = 'Erro ao processar o saque.';
-        
+        Swal.fire('Erro', this.mensagemErro, 'error');
       }
     );
     
