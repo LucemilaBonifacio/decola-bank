@@ -25,11 +25,11 @@ export const routes: Routes = [
   { path: 'login/cliente', component: LoginClienteComponent},
   { path: 'login/gerente', component: LoginGerenteComponent },
   
-  {path: 'clientes', component: GerenteComponent, canActivate: [AuthGuard]}, // tabela crud na tela inicial após autenticação do gerente
-  {path: 'clientes/novo', component: ClienteNovoComponent, canActivate: [AuthGuard]}, // button acima da tabela CREATE
-  {path: 'clientes/alterar/:id', component: ClienteAlteracaoComponent, canActivate: [AuthGuard]}, // ícone do lápis UPDATE
-  {path: 'clientes/conta/:id', component: ContaComponent, canActivate: [AuthGuard]}, // icone da lupa ou olho para exibir detalhes da conta do respectivo cliente na tabela READ
-  {path: 'clientes/conta/extrato/:id', component: ExtratoComponent, canActivate: [AuthGuard]}, // ícone extrato para consultar o extrato relacionado ao cliente READ 
+  {path: 'clientes', component: GerenteComponent}, // tabela crud na tela inicial após autenticação do gerente
+  {path: 'clientes/novo', component: ClienteNovoComponent}, // button acima da tabela CREATE
+  {path: 'clientes/alterar/:id', component: ClienteAlteracaoComponent}, // ícone do lápis UPDATE
+  {path: 'clientes/conta/:id', component: ContaComponent}, // icone da lupa ou olho para exibir detalhes da conta do respectivo cliente na tabela READ
+  {path: 'clientes/conta/extrato/:id', component: ExtratoComponent}, // ícone extrato para consultar o extrato relacionado ao cliente READ 
   
   { path: 'saque', component: SaqueComponent, canActivate: [AuthGuard] },
   { path: 'pagamento', component: PagamentoComponent, canActivate: [AuthGuard] },
