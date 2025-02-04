@@ -55,8 +55,7 @@ public realizarPagamentoApi(id: number, pagamentoBoleto: PagamentoBoleto): Obser
       
     });
 
-  
-  return this.http.post<string>(url, body, {headers});
+  return this.http.post<string>(url, {body},{ responseType: 'text' as 'json' });
 }
 
 }
