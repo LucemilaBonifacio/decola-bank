@@ -49,4 +49,7 @@ export class TransferenciaComponent implements OnInit {
       );
     }
   }
+  voltar(): void {
+    this.router.navigate(['/tela-inicial-cliente']);
+  }
 }

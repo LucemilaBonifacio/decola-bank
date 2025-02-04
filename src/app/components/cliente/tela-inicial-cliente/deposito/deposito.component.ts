@@ -77,8 +77,11 @@ export class DepositoComponent implements OnInit {
         this.mensagemErro = 'Erro ao processar o saque.';
         
       }
-    );
+    );    
     
+  }
+  voltar(): void {
+    this.router.navigate(['/tela-inicial-cliente']);
   }
 
 }
