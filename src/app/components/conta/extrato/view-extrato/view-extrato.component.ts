@@ -38,15 +38,16 @@ ngOnInit(): void {
   imprimirExtrato() {
     window.print();
   }
-  
+  cancelar(){
+    this.router.navigate(['/extrato']);
+  }
 
   gerarPDF() {
     const doc = new jsPDF();
     doc.text('Extrato de Transações', 10, 10);
 
-    const colunas = ["ID", "Titular", "Valor", "Data", "Tipo", "Código", "Status", "Tarifa"];
+    const colunas = ["Titular", "Valor", "Data", "Tipo", "Código", "Status", "Tarifa"];
     const linhas = this.transacoes.map(transacao => [
-      transacao.idTransacao,
       transacao.titularConta,
       transacao.valor.toFixed(2),
       transacao.dataTransacao,

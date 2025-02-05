@@ -1,9 +1,9 @@
 .card-container{
-  background-image: url('/assets/transicao.png');
-  background-size: cover;
+  /* background-image: url('/assets/transicao.png'); */
+  /* background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh; /* Garante que o fundo cubra toda a altura da tela */
+  min-height: 100vh;  */
   margin: 0;
   padding: 0;
   box-sizing: border-box; /* Inclui padding e border no tamanho total do elemento */

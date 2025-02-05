@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 50px;
-  position: relative; /* Define um contêiner de referência para posicionamento absoluto */
+  position: relative; 
 }
 
 .card-saque {
@@ -18,18 +18,20 @@
   position: relative; /* Define um contêiner de referência para o ícone */
 }
 
-.icon-container {
+/* .icon-container {
   position: absolute;
-  top: 20px; /* Ajuste conforme necessário para aproximar do card */
-  right: 575px; /* Ajuste conforme necessário para aproximar do card */
-  z-index: 10; /* Garante que o ícone fique acima do card */
-}
+  top: 20px; 
+  right: 575px; 
+  z-index: 10; 
+} */
 
 .bi-arrow-left-square {
   font-size: 30px; /* Tamanho do ícone */
   cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
 }
-
+.card-login-titulo {
+  width: 85%; /* Garante que o título ocupe toda a largura do contêiner */
+}
 .title {
   width: 100%;
 }

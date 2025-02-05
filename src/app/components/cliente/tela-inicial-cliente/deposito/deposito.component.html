@@ -1,13 +1,16 @@
 
 <section class="card-login-container">
-  <div class="icon-container" (click)="voltar()">
-    <i class="bi bi-arrow-left-square"></i>
-  </div>
+ 
   <div class="card-login">
     <div class="card-login-titulo">
-      <header class="title">
+      <header class="d-flex justify-content-between align-items-center">
+        <div>
         <h1 class="deposito-title">Depósito</h1>
         <h2 class="deposito-sub-title">Saldo: R$ {{ conta.saldo }}</h2>
+        </div>
+        <div class="icon-container ms-5" (click)="voltar()">
+          <i class="bi bi-arrow-left-square"></i>
+        </div>
       </header>
     </div>
     <form #loginForm="ngForm">

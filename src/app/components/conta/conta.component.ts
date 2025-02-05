@@ -17,13 +17,13 @@ export class ContaComponent implements OnInit {
   private modalInstance: any; // Guardar a instância do modal
   cliente: Cliente = new Cliente();
   id!: number;
-
+ 
   constructor(
-    private gerenteService: GerenteService, 
-    private route: ActivatedRoute, 
+    private gerenteService: GerenteService,
+    private route: ActivatedRoute,
     private router: Router
   ) {}
-
+ 
   ngOnInit(): void {
     const cpf = this.route.snapshot.paramMap.get('id');
     if (cpf !== null) {
@@ -33,7 +33,7 @@ export class ContaComponent implements OnInit {
       });
     }
   }
-
+ 
   abrirModal(): void {
     const modalElement = document.getElementById('confirmModal');
     if (modalElement) {
@@ -41,29 +41,30 @@ export class ContaComponent implements OnInit {
       this.modalInstance.show();
     }
   }
-
+ 
   fecharModal(): void {
     if (this.modalInstance) {
-      this.modalInstance.hide(); 
+      this.modalInstance.hide();
     }
   }
-
-
+ 
+ 
   encerrarConta(): void {
     this.id = +this.route.snapshot.paramMap.get('id')!;
     this.gerenteService.deleteConta(this.id).subscribe({
       complete: () => {
         this.cliente.statusCliente = 2;
-        this.fecharModal(); 
-        this.router.navigate(['/clientes']); 
+        this.fecharModal();
+        this.router.navigate(['/clientes']);
       },
       error: (err) => {
         console.error('Erro ao solicitar encerramento da conta:', err);
       },
     });
   }
-
+ 
   getTipoContaDescricao(status?: number): string {
     return status === 1 ? 'Simples' : 'Especial';
   }
 }
+ 

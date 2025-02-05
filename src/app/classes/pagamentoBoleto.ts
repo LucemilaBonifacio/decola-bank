@@ -1,5 +1,5 @@
 export class PagamentoBoleto{
-
+ 
     constructor(
         public codBarras: string = '',
         public dataVencimento: string = '',
@@ -7,5 +7,6 @@ export class PagamentoBoleto{
         public descricao: string = '',
        
     ){}
-
+ 
 }
+ 

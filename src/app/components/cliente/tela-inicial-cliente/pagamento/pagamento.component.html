@@ -1,19 +1,25 @@
 <section class="card-pagamento-container">
-  <div class="icon-container"(click)="voltar()">
-    <i class="bi bi-arrow-left-square"></i>
-  </div>
+  
     <form class="card-pagamento">
-      <header class="title">
-        <h1 class="pagamento-title">Pagamento</h1>
-        <h2 class="pagamento-sub-title">Saldo: R$ {{ conta.saldo }}</h2>
-      </header>
+      <div class="card-login-titulo">
+        <header class="d-flex justify-content-between align-items-center">
+          <div>
+            <h1 class="pagamento-title">Pagamento</h1>
+            <h2 class="pagamento-sub-title">Saldo: R$ {{ conta.saldo }}</h2>
+          </div>
+          <div class="icon-container ms-5"(click)="voltar()">
+            <i class="bi bi-arrow-left-square"></i>
+          </div>
+        </header>
+      </div>
+      
       <div class="value0">
         <input type="number" class="input0" placeholder="Digite o valor" [(ngModel)]="valor" name="valor" required>
       </div>
-      
+     
       <div class="value1">
         <input type="number" class="input1" placeholder="Digite o código de barras" [(ngModel)]="codigoPagamento" name="codigoPagamento" required>
-      </div> 
+      </div>
       <div class="value2">
         <input type="date" class="input2" placeholder="Data vencimento" [(ngModel)]="dataVencimento" name="dataVencimento" required>
       </div>
@@ -25,3 +31,4 @@
       </div>    
     </form>
   </section>
+ 

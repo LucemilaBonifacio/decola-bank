@@ -42,23 +42,12 @@ export class TransacaoService {
 
 //Pagamento de boleto
 public realizarPagamentoApi(id: number, pagamentoBoleto: PagamentoBoleto): Observable<string> {
-  const url = `${this.baseUrlBoleto}/novo/pagamento/${id}`;
-  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-   
-  {
-    const body = JSON.stringify({
-      
-      "codBarras": pagamentoBoleto.codBarras.toString(),  // Garantir que seja String, já que o backend espera Map<String, String>
-      "dataVencimento": pagamentoBoleto.dataVencimento.toString(),
-      "valor": pagamentoBoleto.valor.toString(),    // Convertendo números para string, se necessário
-      "descricaoBoleto": pagamentoBoleto.descricao.toString(),
-      
-    });
-
-  return this.http.post<string>(url, {body},{ responseType: 'text' as 'json' });
+  const url = `${this.baseUrlBoleto}/novo/pagamento/${id}`;  
+  return this.http.post<string>(url, pagamentoBoleto,{ responseType: 'text' as 'json' } );
+ 
+ 
 }
-
-}
+ 
 
 public realizarTransferenciaApi(valor: number, id: number, numContaDestino : string): Observable<string> {
   const url = `${this.baseUrl}/transferencia/${id}/${numContaDestino}`;

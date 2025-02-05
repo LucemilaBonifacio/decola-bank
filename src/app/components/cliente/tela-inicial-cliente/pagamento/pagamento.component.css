@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;  
+  margin-top: 30px;  
   position: relative; /* Define um contêiner de referência para posicionamento absoluto */
 }
 
@@ -12,25 +12,28 @@
   flex-direction: column;
   align-items: center;
   width: 350px;
-  height: auto; /* Permite que o card ajuste sua altura automaticamente */
-  border-radius: 10px;
+  height: 420px;
   padding: 20px;
   padding-bottom: 30px; /* Aumenta o espaço na parte inferior do card */
   position: relative; /* Define um contêiner de referência para o ícone */
+  border-radius: 10px;
 }
-
+/* 
 .icon-container {
   position: absolute;
-  top: 20px; /* Ajuste conforme necessário para aproximar do card */
-  right: 580px; /* Ajuste conforme necessário para aproximar do card */
-  z-index: 10; /* Garante que o ícone fique acima do card */
-}
+  top: 20px; 
+  right: 580px; 
+  z-index: 10; 
+} */
 
 .bi-arrow-left-square {
   font-size: 30px; /* Tamanho do ícone */
   cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
 }
 
+.card-login-titulo {
+  width: 90%; /* Garante que o título ocupe toda a largura do contêiner */
+}
 .title {
   width: 100%;
 }

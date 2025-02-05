@@ -18,12 +18,12 @@
   position: relative; /* Define um contêiner de referência para o ícone */
 }
 
-.icon-container {
+/* .icon-container {
   position: absolute;
-  top: 20px; /* Ajuste conforme necessário para aproximar do card */
-  right: 580px; /* Ajuste conforme necessário para aproximar do card */
-  z-index: 10; /* Garante que o ícone fique acima do card */
-}
+  top: 20px; 
+  right: 580px;
+  z-index: 10; 
+} */
 
 .bi-arrow-left-square {
   font-size: 30px; /* Tamanho do ícone */
@@ -31,7 +31,7 @@
 }
 
 .card-login-titulo {
-  width: 100%; /* Garante que o título ocupe toda a largura do contêiner */
+  width: 80%; /* Garante que o título ocupe toda a largura do contêiner */
 }
 
 .title {
