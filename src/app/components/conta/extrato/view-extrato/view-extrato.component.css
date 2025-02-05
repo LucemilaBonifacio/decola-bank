@@ -6,6 +6,19 @@
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: relative; /* Adicionado */
+}
+
+.icon-container {
+  position: absolute; /* Adicionado */
+  top: 10px; /* Ajuste conforme necessário */
+  right: 50px; /* Ajuste conforme necessário */
+  cursor: pointer;
+}
+
+.bi-arrow-left-square {
+  font-size: 30px; /* Tamanho do ícone */
+  cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
 }
 
 .extrato-title {
@@ -99,8 +112,7 @@
 .modal-content input {
   width: 100%;
   padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
+   border: 1px solid #ccc;
   border-radius: 4px;
 }
 

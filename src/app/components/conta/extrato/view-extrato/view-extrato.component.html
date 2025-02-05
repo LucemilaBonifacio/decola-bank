@@ -1,5 +1,8 @@
 <section class="card-extrato-container">
   <h1 class="extrato-title">Extrato</h1>
+  <div class="icon-container" (click)="voltar()">
+    <i class="bi bi-arrow-left-square"></i>
+  </div>
   <table *ngIf="transacoes.length > 0" class="extrato-table">
     <thead class="extrato-table-title">
       <tr>
