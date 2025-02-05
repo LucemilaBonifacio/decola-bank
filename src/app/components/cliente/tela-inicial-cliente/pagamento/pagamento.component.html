@@ -1,11 +1,14 @@
 <section class="card-pagamento-container">
+  <div class="icon-container"(click)="voltar()">
+    <i class="bi bi-arrow-left-square"></i>
+  </div>
     <form class="card-pagamento">
       <header class="title">
         <h1 class="pagamento-title">Pagamento</h1>
-        <h2 class="pagamento-sub-title">Saldo: R$ {{ saldoCliente }}</h2>
+        <h2 class="pagamento-sub-title">Saldo: R$ {{ conta.saldo }}</h2>
       </header>
       <div class="value0">
-        <input type="number" class="input0" placeholder="Digite o valor" [(ngModel)]="valorPagamento" name="valor" required>
+        <input type="number" class="input0" placeholder="Digite o valor" [(ngModel)]="valor" name="valor" required>
       </div>
       
       <div class="value1">
@@ -18,10 +21,7 @@
         <input type="text" class="input3" placeholder="Descrição" [(ngModel)]="descricao" name="descricao" required>
       </div>
       <div class="button-container">
-        <button id="btn-02" type="button" (click)="verificarSaldo()">Confirmar</button>
-      </div>
-      <div *ngIf="mensagemErro" class="error-message">
-        {{ mensagemErro }}
-      </div>
+        <button id="btn-02" type="button" (click)="pagar()">Confirmar</button>
+      </div>    
     </form>
   </section>

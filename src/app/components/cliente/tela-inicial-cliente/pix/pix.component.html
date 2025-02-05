@@ -1,26 +1,28 @@
-<!-- corrigir sd tag com form e label, colocar selecione uma chave, campo da chave e valor -->
 <section class="card-pix-container">
-    <article class="card-pix">
-      <header class="title">
-        <h1 class="pix-title">Pix</h1>
-        <h2 class="pix-sub-title">Saldo: R$ {{ saldoCliente }}</h2>
-      </header>
-      <div class="value0">
-        <select class="dropdown" [(ngModel)]="selectedOption" name="options" required>
-          <option value="" disabled selected>Selecione uma opção</option>
-          <option value="option1">Opção 1</option>
-          <option value="option2">Opção 2</option>
-          <option value="option3">Opção 3</option>
-        </select>
-      </div>      
-      <div class="value01">
-        <input type="number" class="input01" placeholder="Digite o valor do Pix" [(ngModel)]="valorPix" name="valorPix" required>
-      </div>
-      <div class="button-container">
-        <button id="btn-02" type="button" (click)="realizarPix()">Realizar Pix</button>
-      </div>
-      <div *ngIf="mensagemErro" class="error-message">
-        {{ mensagemErro }}
-      </div>
-    </article>
-  </section>
+  <article class="card-pix">
+    <div class="icon-container" (click)="voltar()">
+      <i class="bi bi-arrow-left-square"></i>
+    </div>
+    <header class="title">
+      <h1 class="pix-title">Pix</h1>
+      <h2 class="pix-sub-title">Saldo: R$ {{ conta.saldo }}</h2>
+    </header>
+    <div class="value0">
+      <select class="dropdown" [(ngModel)]="selectedOption" name="options" required>
+        <option value="" disabled selected>Tipo da chave</option>
+        <option value="cpf">Cpf</option>
+        <option value="email">Email</option>
+        <option value="telefone">Telefone</option>
+      </select>
+    </div>
+    <div class="value02">
+      <input type="text" class="input02" placeholder="Digite a Chave Pix" [(ngModel)]="chavePix" name="chavePix" required>
+    </div>
+    <div class="value01">
+      <input type="number" class="input01" placeholder="Digite o valor do Pix" [(ngModel)]="valorPix" name="valorPix" required>
+    </div>
+    <div class="button-container">
+      <button id="btn-02" type="button" (click)="realizarPix()">Realizar Pix</button>
+    </div>
+  </article>
+</section>

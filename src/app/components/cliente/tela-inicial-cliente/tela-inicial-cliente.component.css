@@ -1,5 +1,12 @@
-
-.card-container {
+.card-container{
+  background-image: url('/assets/transicao.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh; /* Garante que o fundo cubra toda a altura da tela */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Inclui padding e border no tamanho total do elemento */
   display: flex;
   flex-wrap: wrap; 
   gap: 50px; 
@@ -30,9 +37,10 @@
 
 .card-img-top {
   margin: 0; 
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
   width: 50px;
   height: 50px;
+  margin-top: 15px; 
   
   
 }

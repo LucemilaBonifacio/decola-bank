@@ -1,9 +1,13 @@
+
 <section class="card-login-container">
+  <div class="icon-container" (click)="voltar()">
+    <i class="bi bi-arrow-left-square"></i>
+  </div>
   <div class="card-login">
     <div class="card-login-titulo">
       <header class="title">
         <h1 class="deposito-title">Depósito</h1>
-        <h2 class="deposito-sub-title">Saldo: R$ {{ saldoCliente }}</h2>
+        <h2 class="deposito-sub-title">Saldo: R$ {{ conta.saldo }}</h2>
       </header>
     </div>
     <form #loginForm="ngForm">
@@ -20,19 +24,6 @@
         />
       </div>
 
-      <!-- Campo Conta -->
-      <div class="value1">
-        <input
-          type="number"
-          class="input1"
-          placeholder="Conta"
-          name="numConta"
-          [(ngModel)]="numConta"
-          maxlength="7"
-          required
-        />
-      </div>
-
       <!-- Campo Valor -->
       <div class="value2">
         <input
@@ -40,20 +31,14 @@
           class="input2"
           placeholder="Valor"
           name="valor"
-          [(ngModel)]="valorDeposito"
+          [(ngModel)]="valor"
           required
         />
       </div>
-
-      <!-- Exibição de Mensagens de Erro -->
-      <div *ngIf="mensagemErro" class="erro-mensagem">
-        <small>{{ mensagemErro }}</small>
-      </div>
-
-      <!-- Botão -->
       <div class="button-container">
-        <button id="btn-02" type="button" (click)="onSubmit(loginForm)">Confirmar</button>
+        <button id="btn-02" type="button" (click)="verificarSaldo()">Confirmar</button>
       </div>
+      
     </form>
   </div>
 </section>
